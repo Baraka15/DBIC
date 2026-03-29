@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dorah Bloch School — Academic Intelligence System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --midnight: #050e1c;
+  --navy: #081628;
+  --navy2: #0d1f3c;
+  --steel: #152b47;
+  --slate: #1e3a56;
+  --gold: #c9983a;
+  --gold2: #e8b84b;
+  --gold3: #f7d06e;
+  --cream: #f6f0e4;
+  --cream2: #ebe3d2;
+  --white: #fefcf8;
+  --emerald: #0a5e32;
+  --emerald2: #12854a;
+  --crimson: #8b1a30;
+  --crimson2: #c0243f;
+  --sky: #1261a0;
+  --sky2: #1a7fd4;
+  --amber: #b85c00;
+  --muted: #7a9ab8;
+  --muted2: #5a7a96;
+  --border: rgba(201,152,58,0.15);
+  --border2: rgba(255,255,255,0.07);
+  --glass: rgba(8,22,40,0.75);
+  --glass2: rgba(5,14,28,0.85);
+  --glow: rgba(201,152,58,0.2);
+  --rad: 14px;
+  --rad2: 20px;
+  --shadow: 0 8px 40px rgba(0,0,0,0.5);
+  --shadow2: 0 2px 20px rgba(0,0,0,0.3);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 14px; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--midnight);
+  color: var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+#landing {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.landing-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  animation: slowZoom 30s ease-in-out infinite alternate;
+}
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+.landing-overlay {
+  position: fixed; inset: 0; z-index: 1;
+  background: linear-gradient(135deg,
+    rgba(5,14,28,0.95) 0%,
+    rgba(8,22,40,0.88) 40%,
+    rgba(12,30,55,0.82) 70%,
+    rgba(8,22,40,0.92) 100%);
+  backdrop-filter: blur(1px);
+}
+.landing-particles {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none;
+}
+.particle {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: float-particle linear infinite;
+  opacity: 0;
+}
+@keyframes float-particle {
+  0% { opacity: 0; transform: translateY(100vh) scale(0); }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-20px) scale(1.5); }
+}
+.landing-content {
+  position: relative; z-index: 3;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 960px;
+  width: 100%;
+  animation: landing-reveal 1s ease 0.2s both;
+}
+@keyframes landing-reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+.school-badge-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.school-badge {
+  width: 110px; height: 130px;
+  filter: drop-shadow(0 0 20px rgba(201,152,58,0.4));
+  animation: badge-glow 4s ease infinite alternate;
+}
+@keyframes badge-glow {
+  from { filter: drop-shadow(0 0 12px rgba(201,152,58,0.3)); }
+  to { filter: drop-shadow(0 0 28px rgba(201,152,58,0.6)); }
+}
+.school-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 7vw, 76px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.school-name span { color: var(--gold2); }
+.school-motto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.school-tagline {
+  font-size: 13px;
+  color: var(--muted2);
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+.divider-ornament {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 auto 40px;
+  max-width: 300px;
+}
+.divider-ornament::before, .divider-ornament::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.divider-ornament span {
+  color: var(--gold); font-size: 16px;
+}
+.portal-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 20px;
+}
+.portals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 880px;
+  margin: 0 auto 40px;
+}
+.portal-btn {
+  position: relative;
+  background: rgba(8,22,40,0.7);
+  border: 1px solid rgba(201,152,58,0.2);
+  border-radius: 18px;
+  padding: 28px 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  text-align: left;
+  backdrop-filter: blur(12px);
+}
+.portal-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--accent-color, transparent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.portal-btn::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transition: left 0.5s;
+}
+.portal-btn:hover { transform: translateY(-6px) scale(1.02); border-color: var(--gold); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px var(--glow); }
+.portal-btn:hover::before { opacity: 1; }
+.portal-btn:hover::after { left: 100%; }
+.portal-btn .p-icon { font-size: 36px; margin-bottom: 16px; display: block; filter: grayscale(0.2); }
+.portal-btn .p-role { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.portal-btn .p-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.portal-btn .p-arrow { position: absolute; bottom: 20px; right: 20px; font-size: 20px; color: var(--gold); opacity: 0; transform: translateX(-8px); transition: all 0.3s; }
+.portal-btn:hover .p-arrow { opacity: 1; transform: translateX(0); }
+.portal-btn.student { --accent-color: rgba(201,152,58,0.12); }
+.portal-btn.teacher { --accent-color: rgba(10,94,50,0.12); }
+.portal-btn.parent { --accent-color: rgba(18,97,160,0.12); }
+.portal-btn.admin { --accent-color: rgba(139,26,48,0.12); }
+.landing-stats {
+  display: flex; justify-content: center; gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.lstat { text-align: center; }
+.lstat-val { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--gold2); line-height: 1; }
+.lstat-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted2); margin-top: 4px; }
+.landing-footer {
+  font-size: 11px; color: var(--muted2);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+}
+.sec-badge {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border2);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 10px;
+}
+.overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(3,8,18,0.88);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+.login-card {
+  background: linear-gradient(145deg, rgba(13,31,60,0.95), rgba(8,22,40,0.98));
+  border: 1px solid rgba(201,152,58,0.25);
+  border-radius: 24px;
+  padding: 0;
+  width: 100%; max-width: 460px;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,152,58,0.1);
+}
+.overlay.open .login-card { transform: scale(1) translateY(0); }
+.login-header {
+  background: linear-gradient(135deg, var(--navy2), var(--steel));
+  padding: 32px 36px 28px;
+  border-bottom: 1px solid rgba(201,152,58,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.login-header::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(201,152,58,0.12), transparent 70%);
+}
+.login-role-icon { font-size: 40px; margin-bottom: 12px; display: block; filter: drop-shadow(0 4px 12px rgba(201,152,58,0.3)); }
+.login-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.login-sub { font-size: 12px; color: var(--muted); }
+.login-body { padding: 32px 36px; }
+.fg { margin-bottom: 20px; }
+.fg label { display: block; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.fg-wrap { position: relative; }
+.fg input {
+  width: 100%;
+  background: rgba(5,14,28,0.8);
+  border: 1.5px solid rgba(201,152,58,0.2);
+  border-radius: 10px;
+  padding: 13px 16px 13px 42px;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s;
+}
+.fg input:focus { border-color: var(--gold); background: rgba(8,22,40,0.9); box-shadow: 0 0 0 3px rgba(201,152,58,0.1); }
+.fg input::placeholder { color: rgba(122,154,184,0.5); font-size: 13px; }
+.fg-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; opacity: 0.5; pointer-events: none; }
+.fg-eye { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; opacity: 0.5; cursor: pointer; transition: opacity 0.2s; }
+.fg-eye:hover { opacity: 1; }
+.login-options { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.remember-wrap { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.remember-wrap input[type=checkbox] { accent-color: var(--gold); }
+.remember-wrap span { font-size: 12px; color: var(--muted); }
+.forgot-link { font-size: 12px; color: var(--gold); cursor: pointer; opacity: 0.8; }
+.forgot-link:hover { opacity: 1; text-decoration: underline; }
+.btn-login {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border: none; border-radius: 10px;
+  padding: 14px;
+  color: var(--midnight);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+  margin-bottom: 16px;
+}
+.btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,152,58,0.4); }
+.btn-login:active { transform: translateY(0); }
+.btn-login::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+.btn-login:hover::after { transform: translateX(100%); }
+.biometric-btn {
+  width: 100%;
+  background: rgba(201,152,58,0.08);
+  border: 1.5px solid rgba(201,152,58,0.2);
+  border-radius: 10px;
+  padding: 11px;
+  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.biometric-btn:hover { background: rgba(201,152,58,0.14); border-color: var(--gold); }
+.login-err {
+  background: rgba(139,26,48,0.15);
+  border: 1px solid rgba(192,36,63,0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px; color: #f87171;
+  margin-bottom: 16px;
+  display: none;
+  animation: shake 0.4s ease;
+}
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+.demo-creds {
+  background: rgba(201,152,58,0.06);
+  border: 1px dashed rgba(201,152,58,0.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.8;
+}
+.demo-creds strong { color: var(--gold2); }
+.btn-cancel {
+  background: none; border: 1px solid var(--border2);
+  border-radius: 8px; padding: 10px 20px;
+  color: var(--muted); cursor: pointer;
+  font-family: 'Outfit', sans-serif; font-size: 13px;
+  transition: all 0.2s; width: 100%; margin-top: 10px;
+}
+.btn-cancel:hover { border-color: var(--muted); color: var(--cream); }
+.twofa-card {
+  background: linear-gradient(145deg, rgba(13,31,60,0.97), rgba(8,22,40,0.99));
+  border: 1px solid rgba(201,152,58,0.3);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%; max-width: 380px;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+}
+.overlay.open .twofa-card { transform: scale(1); }
+.otp-wrap { display: flex; gap: 10px; justify-content: center; margin: 24px 0; }
+.otp-input {
+  width: 52px; height: 64px;
+  background: rgba(5,14,28,0.8);
+  border: 2px solid rgba(201,152,58,0.25);
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px; font-weight: 700;
+  color: var(--gold2);
+  outline: none;
+  transition: all 0.3s;
+}
+.otp-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,152,58,0.15); }
+.otp-timer { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+.otp-timer span { color: var(--gold); font-weight: 600; }
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+  transition: transform 0.3s;
+}
+.sidebar-photo {
+  height: 120px;
+  background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80');
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.sidebar-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(8,22,40,0.6), var(--navy2));
+}
+.sidebar-brand {
+  position: relative; z-index: 1;
+  padding: 16px 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sb-badge svg { width: 36px; height: 44px; }
+.sb-info .sb-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 700; color: var(--gold2); line-height: 1.2; }
+.sb-info .sb-sub { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+.sidebar-user {
+  padding: 16px 18px;
+  margin: 8px 12px;
+  background: rgba(201,152,58,0.06);
+  border: 1px solid rgba(201,152,58,0.15);
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.s-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--crimson2));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-weight: 700;
+  color: white; flex-shrink: 0;
+  border: 2px solid rgba(201,152,58,0.3);
+}
+.s-name { font-size: 13px; font-weight: 600; color: var(--white); }
+.s-role { font-size: 10px; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; }
+.s-lin { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.sidebar-nav { flex: 1; padding: 10px 12px; overflow-y: auto; }
+.nav-group { margin-bottom: 20px; }
+.nav-group-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted2); padding: 4px 10px; margin-bottom: 6px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  cursor: pointer; font-size: 13px;
+  color: var(--muted); font-weight: 400;
+  transition: all 0.25s;
+  margin-bottom: 2px;
+  position: relative;
+}
+.nav-item:hover { background: rgba(201,152,58,0.08); color: var(--cream); }
+.nav-item.active { background: linear-gradient(135deg, rgba(201,152,58,0.18), rgba(201,152,58,0.08)); color: var(--gold2); border: 1px solid rgba(201,152,58,0.2); }
+.nav-item.active::before { content: ''; position: absolute; left: 0; top: 20%; bottom: 20%; width: 3px; border-radius: 2px; background: var(--gold); }
+.nav-icon { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
+.nav-badge { margin-left: auto; background: var(--crimson2); color: white; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 20px; animation: pulse-badge 2s ease infinite; }
+@keyframes pulse-badge { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.sidebar-footer { padding: 14px 12px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.session-info { display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: var(--muted2); }
+.session-timer { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.btn-logout {
+  background: rgba(139,26,48,0.12);
+  border: 1px solid rgba(192,36,63,0.2);
+  border-radius: 8px; padding: 9px;
+  color: #f87171; cursor: pointer;
+  font-family: 'Outfit', sans-serif; font-size: 12px;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-logout:hover { background: rgba(139,26,48,0.25); border-color: var(--crimson2); }
+.main-area { margin-left: 260px; flex: 1; display: flex; flex-direction: column; }
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  height: 64px;
+  background: rgba(8,22,40,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.topbar-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--white); }
+.breadcrumb { font-size: 11px; color: var(--muted); }
+.breadcrumb span { color: var(--gold); }
+.topbar-right { display: flex; align-items: center; gap: 14px; }
+.live-badge { display: flex; align-items: center; gap: 6px; background: rgba(10,94,50,0.15); border: 1px solid rgba(18,133,74,0.3); border-radius: 20px; padding: 5px 12px; font-size: 10px; color: #34d399; letter-spacing: 1px; }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: live-pulse 2s ease infinite; }
+@keyframes live-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+.notif-btn { position: relative; background: rgba(255,255,255,0.04); border: 1px solid var(--border2); border-radius: 10px; padding: 9px 12px; cursor: pointer; font-size: 16px; transition: all 0.2s; color: var(--cream); }
+.notif-btn:hover { background: rgba(201,152,58,0.1); border-color: var(--border); }
+.notif-count { position: absolute; top: -4px; right: -4px; width: 18px; height: 18px; background: var(--crimson2); color: white; border-radius: 50%; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.search-top { display: flex; align-items: center; gap: 8px; background: rgba(5,14,28,0.6); border: 1px solid var(--border2); border-radius: 10px; padding: 8px 14px; }
+.search-top input { background: none; border: none; outline: none; color: var(--cream); font-family: 'Outfit', sans-serif; font-size: 13px; width: 160px; }
+.search-top input::placeholder { color: var(--muted2); }
+.content-area { padding: 28px 28px; flex: 1; }
+.content-section { display: none; animation: section-in 0.35s ease; }
+.content-section.active { display: block; }
+@keyframes section-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.section-hdr { margin-bottom: 24px; }
+.section-hdr h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.section-hdr p { font-size: 13px; color: var(--muted); }
+.card { background: linear-gradient(145deg, rgba(13,31,60,0.8), rgba(8,22,40,0.9)); border: 1px solid var(--border); border-radius: var(--rad2); padding: 24px; transition: border-color 0.3s; }
+.card:hover { border-color: rgba(201,152,58,0.25); }
+.card h3 { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.stat-box { background: linear-gradient(145deg, rgba(13,31,60,0.85), rgba(8,22,40,0.95)); border: 1px solid var(--border); border-radius: var(--rad2); padding: 22px 20px; position: relative; overflow: hidden; transition: all 0.3s; }
+.stat-box:hover { transform: translateY(-3px); border-color: rgba(201,152,58,0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+.stat-box::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent-c, var(--gold)), transparent); }
+.stat-icon { font-size: 26px; margin-bottom: 14px; }
+.stat-val { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.stat-lbl { font-size: 11px; color: var(--muted); }
+.stat-trend { position: absolute; top: 18px; right: 18px; font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 500; }
+.trend-up { background: rgba(10,94,50,0.2); color: #34d399; }
+.trend-dn { background: rgba(139,26,48,0.2); color: #f87171; }
+.trend-ntr { background: rgba(26,127,212,0.2); color: #60a5fa; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 900px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+.table-card { background: linear-gradient(145deg, rgba(13,31,60,0.8), rgba(8,22,40,0.9)); border: 1px solid var(--border); border-radius: var(--rad2); overflow: hidden; margin-bottom: 20px; }
+.table-hdr { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.table-hdr h3 { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--white); }
+table { width: 100%; border-collapse: collapse; }
+thead tr { border-bottom: 1px solid var(--border); }
+thead th { padding: 12px 18px; text-align: left; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted2); font-weight: 400; }
+tbody tr { border-bottom: 1px solid rgba(255,255,255,0.03); transition: background 0.15s; }
+tbody tr:hover { background: rgba(201,152,58,0.04); }
+tbody td { padding: 14px 18px; font-size: 13px; }
+.badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+.b-strong { background: rgba(10,94,50,0.2); color: #34d399; border: 1px solid rgba(10,94,50,0.3); }
+.b-stable { background: rgba(18,97,160,0.2); color: #60a5fa; border: 1px solid rgba(18,97,160,0.3); }
+.b-monitor { background: rgba(184,92,0,0.2); color: #fbbf24; border: 1px solid rgba(184,92,0,0.3); }
+.b-risk { background: rgba(139,26,48,0.2); color: #f87171; border: 1px solid rgba(139,26,48,0.3); }
+.b-gold { background: rgba(201,152,58,0.15); color: var(--gold2); border: 1px solid rgba(201,152,58,0.25); }
+.b-gray { background: rgba(122,154,184,0.12); color: var(--muted); border: 1px solid rgba(122,154,184,0.15); }
+.b-green { background: rgba(10,94,50,0.15); color: #34d399; }
+.b-red { background: rgba(139,26,48,0.15); color: #f87171; }
+.sig-bar { display: flex; align-items: center; gap: 8px; }
+.sig-track { flex: 1; height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+.sig-fill { height: 100%; border-radius: 3px; transition: width 1.2s ease; }
+.sf-strong { background: linear-gradient(90deg, #0a5e32, #34d399); }
+.sf-stable { background: linear-gradient(90deg, #1261a0, #60a5fa); }
+.sf-monitor { background: linear-gradient(90deg, #b85c00, #fbbf24); }
+.sf-risk { background: linear-gradient(90deg, #8b1a30, #f87171); }
+.sig-val { font-size: 11px; color: var(--muted); width: 28px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+.rank-gold { color: #fbbf24; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; }
+.rank-silver { color: #9ca3af; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; }
+.rank-bronze { color: #b45309; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; }
+.profile-hero { background-image: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; border-radius: var(--rad2); overflow: hidden; margin-bottom: 20px; position: relative; }
+.profile-hero-overlay { background: linear-gradient(135deg, rgba(5,14,28,0.92), rgba(13,31,60,0.85)); padding: 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.ph-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--crimson2)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: white; flex-shrink: 0; border: 3px solid rgba(201,152,58,0.5); box-shadow: 0 0 30px rgba(201,152,58,0.3); }
+.ph-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--white); }
+.ph-info p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.ph-meta { display: flex; gap: 28px; margin-top: 14px; flex-wrap: wrap; }
+.ph-m-val { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--white); }
+.ph-m-lbl { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; }
+.ai-insight { background: linear-gradient(135deg, rgba(201,152,58,0.08), rgba(139,26,48,0.06)); border: 1px solid rgba(201,152,58,0.2); border-radius: var(--rad2); padding: 22px 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
+.ai-insight::before { content: '⚡ AI ANALYSIS'; position: absolute; top: 12px; right: 16px; font-size: 9px; letter-spacing: 2px; color: var(--gold); opacity: 0.5; font-family: 'JetBrains Mono', monospace; }
+.ai-insight h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--gold2); margin-bottom: 10px; }
+.ai-insight p { font-size: 13px; color: #c8c6bc; line-height: 1.75; }
+.subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 16px; }
+.subj-card { background: rgba(5,14,28,0.6); border: 1px solid var(--border); border-radius: var(--rad); padding: 18px 16px; transition: all 0.3s; position: relative; overflow: hidden; }
+.subj-card:hover { transform: translateY(-3px); border-color: rgba(201,152,58,0.3); }
+.subj-name { font-size: 11px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.subj-score { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.subj-grade { font-size: 11px; color: var(--gold); }
+.subj-bar { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-top: 12px; overflow: hidden; }
+.subj-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--gold), var(--gold2)); transition: width 1.4s ease; }
+.att-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.att-day-hdr { text-align: center; font-size: 9px; color: var(--muted2); padding: 4px 0; letter-spacing: 0.5px; }
+.att-day-cell { aspect-ratio: 1; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; cursor: default; transition: transform 0.15s; }
+.att-day-cell:hover { transform: scale(1.25); }
+.ad-present { background: rgba(10,94,50,0.3); color: #34d399; }
+.ad-absent { background: rgba(139,26,48,0.3); color: #f87171; }
+.ad-late { background: rgba(184,92,0,0.3); color: #fbbf24; }
+.ad-holiday { background: rgba(122,154,184,0.07); color: var(--muted2); }
+.timetable-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 2px; }
+.tt-hdr { background: rgba(201,152,58,0.1); border: 1px solid rgba(201,152,58,0.15); border-radius: 6px; padding: 8px; text-align: center; font-size: 11px; color: var(--gold2); font-weight: 600; }
+.tt-time { background: rgba(5,14,28,0.6); border: 1px solid var(--border); border-radius: 6px; padding: 8px; text-align: center; font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.tt-cell { border-radius: 6px; padding: 10px 8px; font-size: 11px; font-weight: 500; line-height: 1.4; text-align: center; border: 1px solid; }
+.tt-math { background: rgba(201,152,58,0.1); border-color: rgba(201,152,58,0.2); color: var(--gold2); }
+.tt-eng { background: rgba(18,97,160,0.12); border-color: rgba(18,97,160,0.2); color: #60a5fa; }
+.tt-sci { background: rgba(10,94,50,0.12); border-color: rgba(10,94,50,0.2); color: #34d399; }
+.tt-hist { background: rgba(139,26,48,0.12); border-color: rgba(139,26,48,0.2); color: #f87171; }
+.tt-geo { background: rgba(184,92,0,0.1); border-color: rgba(184,92,0,0.2); color: #fbbf24; }
+.tt-break { background: rgba(255,255,255,0.03); border-color: var(--border2); color: var(--muted2); font-size: 10px; }
+.tt-empty { background: transparent; border-color: transparent; }
+.fee-bar { height: 8px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+.fee-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--emerald2), #34d399); transition: width 1s ease; }
+.alert-ticker { background: rgba(139,26,48,0.1); border: 1px solid rgba(192,36,63,0.2); border-radius: 10px; padding: 10px 18px; display: flex; align-items: center; gap: 12px; overflow: hidden; margin-bottom: 20px; }
+.ticker-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--crimson2); flex-shrink: 0; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.ticker-scroll { overflow: hidden; flex: 1; }
+.ticker-inner { display: flex; gap: 48px; animation: ticker-move 25s linear infinite; white-space: nowrap; }
+@keyframes ticker-move { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-item { font-size: 11px; color: #f87171; }
+.tab-bar { display: flex; gap: 4px; background: rgba(5,14,28,0.6); border: 1px solid var(--border); border-radius: 10px; padding: 4px; margin-bottom: 20px; width: fit-content; }
+.tab { padding: 8px 18px; border-radius: 7px; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--muted); transition: all 0.2s; border: none; background: none; font-family: 'Outfit', sans-serif; }
+.tab.active { background: rgba(201,152,58,0.12); color: var(--gold2); border: 1px solid rgba(201,152,58,0.2); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 18px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; transition: all 0.2s; text-decoration: none; }
+.btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--midnight); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,152,58,0.35); }
+.btn-success { background: rgba(10,94,50,0.8); color: #34d399; border: 1px solid rgba(10,94,50,0.5); }
+.btn-danger { background: rgba(139,26,48,0.8); color: #f87171; border: 1px solid rgba(139,26,48,0.4); }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
+.btn-ghost:hover { color: var(--cream); border-color: var(--muted); }
+.btn-sm { padding: 6px 13px; font-size: 11px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(5,14,28,0.7); border: 1.5px solid rgba(201,152,58,0.18); border-radius: 9px; padding: 11px 14px; color: var(--cream); font-family: 'Outfit', sans-serif; font-size: 13px; outline: none; transition: all 0.3s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,152,58,0.1); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted2); }
+.form-group select option { background: var(--navy2); }
+.toast-container { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.toast { background: linear-gradient(135deg, rgba(13,31,60,0.98), rgba(8,22,40,0.99)); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 12px; padding: 14px 18px; min-width: 300px; max-width: 380px; animation: toast-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: var(--shadow); pointer-events: all; display: flex; align-items: flex-start; gap: 12px; }
+.toast.success { border-left-color: #34d399; }
+.toast.error { border-left-color: var(--crimson2); }
+.toast.warning { border-left-color: #fbbf24; }
+@keyframes toast-in { from { transform: translateX(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+.toast-icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+.toast-body .toast-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+.toast-body .toast-msg { font-size: 11px; color: var(--muted); }
+canvas { max-width: 100%; }
+.notif-panel { position: fixed; top: 64px; right: 0; z-index: 200; width: 340px; background: linear-gradient(135deg, rgba(13,31,60,0.98), rgba(5,14,28,0.99)); border: 1px solid var(--border); border-right: none; border-top: none; border-radius: 0 0 0 16px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: -10px 10px 40px rgba(0,0,0,0.5); max-height: 70vh; overflow-y: auto; }
+.notif-panel.open { transform: translateX(0); }
+.notif-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.notif-header h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--white); }
+.notif-item { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.03); transition: background 0.15s; cursor: pointer; }
+.notif-item:hover { background: rgba(201,152,58,0.05); }
+.notif-item.unread { border-left: 2px solid var(--gold); }
+.notif-item h5 { font-size: 13px; color: var(--white); margin-bottom: 4px; }
+.notif-item p { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.notif-time { font-size: 10px; color: var(--muted2); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.menu-toggle { display: none; background: none; border: none; color: var(--cream); cursor: pointer; font-size: 22px; padding: 4px; }
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-area { margin-left: 0; }
+  .grid2, .grid3, .form-row { grid-template-columns: 1fr; }
+  .content-area { padding: 18px 14px; }
+  .timetable-grid { grid-template-columns: 60px repeat(5, 1fr); }
+}
+.mb0{margin-bottom:0}.mb8{margin-bottom:8px}.mb16{margin-bottom:16px}.mb20{margin-bottom:20px}
+.flex-between{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.text-gold{color:var(--gold2)}.text-muted{color:var(--muted)}.text-white{color:var(--white)}
+.mono{font-family:'JetBrains Mono',monospace}.serif{font-family:'Cormorant Garamond',serif}
+.page{display:none}.page.active{display:block}
+.spinner{width:18px;height:18px;border:2px solid rgba(201,152,58,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.msg-thread{display:flex;flex-direction:column;gap:12px;max-height:320px;overflow-y:auto;padding-right:8px}
+.msg-bubble{max-width:78%;padding:12px 16px;border-radius:14px;font-size:13px;line-height:1.6}
+.msg-in{background:rgba(21,43,71,0.8);border:1px solid var(--border);border-radius:4px 14px 14px 14px;align-self:flex-start;color:var(--cream)}
+.msg-out{background:rgba(201,152,58,0.15);border:1px solid rgba(201,152,58,0.25);border-radius:14px 4px 14px 14px;align-self:flex-end;color:var(--cream)}
+.msg-meta{font-size:10px;color:var(--muted2);margin-top:5px}
+.msg-input-wrap{display:flex;gap:10px;margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
+.msg-input-wrap input{flex:1;background:rgba(5,14,28,0.6);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--cream);font-family:'Outfit',sans-serif;font-size:13px;outline:none}
+.event-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.event-date-box{width:48px;height:52px;flex-shrink:0;background:rgba(201,152,58,0.1);border:1px solid rgba(201,152,58,0.2);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.event-day{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gold2);line-height:1}
+.event-mon{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.event-info h5{font-size:13px;color:var(--white);margin-bottom:3px}
+.event-info p{font-size:11px;color:var(--muted)}
+.event-type{font-size:10px;margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-header">
+    <h4>🔔 Notifications</h4>
+    <button class="btn btn-ghost btn-sm" onclick="toggleNotif()">✕</button>
+  </div>
+  <div id="notifList"></div>
+</div>
+
+<div class="landing-particles" id="particles"></div>
+
+<!-- LANDING PAGE -->
+<div id="landingPage" class="page active">
+  <div class="landing-bg"></div>
+  <div class="landing-overlay"></div>
+  <div class="landing-content">
+    <div class="school-badge-wrap">
+      <svg class="school-badge" viewBox="0 0 110 130" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#152b47"/>
+            <stop offset="100%" style="stop-color:#0d1f3c"/>
+          </linearGradient>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#d4a843"/>
+            <stop offset="100%" style="stop-color:#f0c85a"/>
+          </linearGradient>
+        </defs>
+        <path d="M55 4 L106 24 L106 70 Q106 104 55 122 Q4 104 4 70 L4 24 Z" fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="1.8"/>
+        <path d="M55 11 L99 29 L99 70 Q99 100 55 115 Q11 100 11 70 L11 29 Z" fill="none" stroke="rgba(212,168,67,0.25)" stroke-width="1"/>
+        <line x1="28" y1="42" x2="82" y2="42" stroke="rgba(212,168,67,0.3)" stroke-width="0.8"/>
+        <rect x="38" y="48" width="34" height="22" rx="2" fill="none" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <line x1="55" y1="48" x2="55" y2="70" stroke="url(#goldGrad)" stroke-width="1.2"/>
+        <line x1="41" y1="54" x2="53" y2="54" stroke="rgba(212,168,67,0.5)" stroke-width="0.8"/>
+        <line x1="41" y1="59" x2="53" y2="59" stroke="rgba(212,168,67,0.5)" stroke-width="0.8"/>
+        <line x1="41" y1="64" x2="53" y2="64" stroke="rgba(212,168,67,0.5)" stroke-width="0.8"/>
+        <line x1="57" y1="54" x2="69" y2="54" stroke="rgba(212,168,67,0.5)" stroke-width="0.8"/>
+        <line x1="57" y1="59" x2="69" y2="59" stroke="rgba(212,168,67,0.5)" stroke-width="0.8"/>
+        <line x1="57" y1="64" x2="69" y2="64" stroke="rgba(212,168,67,0.5)" stroke-width="0.8"/>
+        <ellipse cx="55" cy="33" rx="5" ry="7" fill="rgba(212,168,67,0.7)"/>
+        <ellipse cx="55" cy="30" rx="3" ry="4" fill="rgba(248,209,75,0.9)"/>
+        <rect x="53" y="38" width="4" height="8" rx="1" fill="url(#goldGrad)"/>
+        <path d="M24 62 Q18 58 20 52 Q24 55 24 62Z" fill="rgba(212,168,67,0.5)"/>
+        <path d="M22 70 Q15 66 18 60 Q22 64 22 70Z" fill="rgba(212,168,67,0.4)"/>
+        <path d="M86 62 Q92 58 90 52 Q86 55 86 62Z" fill="rgba(212,168,67,0.5)"/>
+        <path d="M88 70 Q95 66 92 60 Q88 64 88 70Z" fill="rgba(212,168,67,0.4)"/>
+        <path d="M22 92 L88 92 L85 100 L88 108 L22 108 L25 100 Z" fill="url(#goldGrad)"/>
+        <text x="55" y="103" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#050e1c" font-weight="700" letter-spacing="1">EXCELLENTIA</text>
+        <text x="55" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="6" fill="rgba(212,168,67,0.6)">EST. 1968</text>
+      </svg>
+    </div>
+    <div class="school-name">DORAH <span>BLOCH</span></div>
+    <div class="school-motto">· Excellentia et Virtus ·</div>
+    <div class="school-tagline">Academic Intelligence System · Secure Portal · Kampala, Uganda</div>
+    <div class="divider-ornament"><span>✦</span></div>
+    <div class="portal-label">Select Your Portal to Continue</div>
+    <div class="portals-grid">
+      <div class="portal-btn student" onclick="openLogin('student')">
+        <span class="p-icon">🎓</span>
+        <div class="p-role">Student</div>
+        <div class="p-desc">Access results, report cards, timetable, assignments & AI insights.</div>
+        <span class="p-arrow">→</span>
+      </div>
+      <div class="portal-btn teacher" onclick="openLogin('teacher')">
+        <span class="p-icon">📚</span>
+        <div class="p-role">Teacher</div>
+        <div class="p-desc">Manage marks, attendance, class analytics & student monitoring.</div>
+        <span class="p-arrow">→</span>
+      </div>
+      <div class="portal-btn parent" onclick="openLogin('parent')">
+        <span class="p-icon">👨‍👩‍👧</span>
+        <div class="p-role">Parent / Guardian</div>
+        <div class="p-desc">Monitor your child's progress, fees, attendance & school events.</div>
+        <span class="p-arrow">→</span>
+      </div>
+      <div class="portal-btn admin" onclick="openLogin('admin')">
+        <span class="p-icon">🏛️</span>
+        <div class="p-role">Administrator</div>
+        <div class="p-desc">Full system control — analytics, staff, reports & monitoring.</div>
+        <span class="p-arrow">→</span>
+      </div>
+    </div>
+    <div class="landing-stats">
+      <div class="lstat"><div class="lstat-val">847</div><div class="lstat-lbl">Students</div></div>
+      <div class="lstat"><div class="lstat-val">62</div><div class="lstat-lbl">Teachers</div></div>
+      <div class="lstat"><div class="lstat-val">24</div><div class="lstat-lbl">Classes</div></div>
+      <div class="lstat"><div class="lstat-val">98%</div><div class="lstat-lbl">Pass Rate</div></div>
+      <div class="lstat"><div class="lstat-val">55</div><div class="lstat-lbl">Years of Excellence</div></div>
+    </div>
+    <div class="landing-footer">
+      <div class="sec-badge">🔒 SSL Encrypted</div>
+      <div class="sec-badge">🛡️ JWT Secured</div>
+      <div class="sec-badge">⚡ Real-Time Monitoring</div>
+      <div class="sec-badge">🤖 AI-Powered Analytics</div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="overlay" id="loginOverlay">
+  <div class="login-card" id="loginCard">
+    <div class="login-header">
+      <span class="login-role-icon" id="loginIcon">🎓</span>
+      <div class="login-title" id="loginTitle">Student Access</div>
+      <div class="login-sub" id="loginSub">Secure authentication required</div>
+    </div>
+    <div class="login-body">
+      <div id="fields-student">
+        <div class="fg"><label>Learner Identification Number (LIN)</label>
+          <div class="fg-wrap"><span class="fg-icon">🪪</span>
+            <input type="text" id="in-lin" placeholder="e.g. LIN-2024-0001" autocomplete="off">
+          </div>
+        </div>
+        <div class="fg"><label>PIN / Password</label>
+          <div class="fg-wrap"><span class="fg-icon">🔑</span>
+            <input type="password" id="in-pin" placeholder="Enter your 4-digit PIN or password">
+            <span class="fg-eye" onclick="togglePwd('in-pin',this)">👁</span>
+          </div>
+        </div>
+      </div>
+      <div id="fields-staff" style="display:none">
+        <div class="fg"><label>Username / Staff ID</label>
+          <div class="fg-wrap"><span class="fg-icon">👤</span>
+            <input type="text" id="in-user" placeholder="Enter username" autocomplete="off">
+          </div>
+        </div>
+        <div class="fg"><label>Password</label>
+          <div class="fg-wrap"><span class="fg-icon">🔑</span>
+            <input type="password" id="in-pass" placeholder="Enter secure password">
+            <span class="fg-eye" onclick="togglePwd('in-pass',this)">👁</span>
+          </div>
+        </div>
+      </div>
+      <div class="login-options">
+        <label class="remember-wrap">
+          <input type="checkbox" id="rememberMe" checked>
+          <span>Remember this device</span>
+        </label>
+        <span class="forgot-link" onclick="showForgot()">Forgot credentials?</span>
+      </div>
+      <div class="login-err" id="loginErr">❌ <span id="loginErrMsg">Invalid credentials.</span></div>
+      <button class="btn-login" onclick="doLogin()" id="loginSubmitBtn">
+        <span id="loginBtnInner">🔐 &nbsp;Secure Sign In</span>
+      </button>
+      <button class="biometric-btn" onclick="biometricLogin()">🫆 &nbsp;Sign In with Biometrics</button>
+      <div class="demo-creds" id="demoCreds"></div>
+      <button class="btn-cancel" onclick="closeLogin()">← Back to Portal Selection</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2FA MODAL -->
+<div class="overlay" id="tfaOverlay">
+  <div class="twofa-card">
+    <div style="font-size:36px;margin-bottom:12px">📲</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--white);margin-bottom:8px">Two-Factor Auth</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Enter the 6-digit code sent to your registered device</div>
+    <div style="font-size:11px;color:var(--muted2);margin-bottom:4px" id="tfa-desc">+256 700 *** ***</div>
+    <div class="otp-wrap">
+      <input class="otp-input" maxlength="1" id="otp0" oninput="otpNext(0)">
+      <input class="otp-input" maxlength="1" id="otp1" oninput="otpNext(1)">
+      <input class="otp-input" maxlength="1" id="otp2" oninput="otpNext(2)">
+      <input class="otp-input" maxlength="1" id="otp3" oninput="otpNext(3)">
+      <input class="otp-input" maxlength="1" id="otp4" oninput="otpNext(4)">
+      <input class="otp-input" maxlength="1" id="otp5" oninput="otpNext(5)">
+    </div>
+    <div class="otp-timer">Code expires in: <span id="tfaCountdown">30</span>s &nbsp;·&nbsp; <span style="color:var(--gold);cursor:pointer" onclick="resendOtp()">Resend</span></div>
+    <button class="btn-login" onclick="verifyOtp()" style="margin-bottom:10px">✓ &nbsp;Verify Code</button>
+    <div style="font-size:11px;color:var(--muted2);margin-top:4px">Demo: enter any 6 digits to continue</div>
+  </div>
+</div>
+
+<!-- STUDENT PORTAL -->
+<div id="studentPortal" class="page">
+<div class="app-shell">
+  <nav class="sidebar" id="studentSidebar">
+    <div class="sidebar-photo">
+      <div class="sidebar-brand">
+        <div class="sb-info"><div class="sb-name">Dorah Bloch</div><div class="sb-sub">Student Portal</div></div>
+      </div>
+    </div>
+    <div class="sidebar-user" id="st-user-card"></div>
+    <div class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Academic</div>
+        <div class="nav-item active" onclick="showSec('st','overview',this)"><span class="nav-icon">🏠</span> Overview</div>
+        <div class="nav-item" onclick="showSec('st','results',this)"><span class="nav-icon">📊</span> My Results</div>
+        <div class="nav-item" onclick="showSec('st','reportcard',this)"><span class="nav-icon">📄</span> Report Card</div>
+        <div class="nav-item" onclick="showSec('st','timetable',this)"><span class="nav-icon">🗓️</span> Timetable</div>
+        <div class="nav-item" onclick="showSec('st','attendance',this)"><span class="nav-icon">📅</span> Attendance</div>
+        <div class="nav-item" onclick="showSec('st','assignments',this)"><span class="nav-icon">📝</span> Assignments</div>
+        <div class="nav-item" onclick="showSec('st','fees',this)"><span class="nav-icon">💳</span> Fees</div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Communication</div>
+        <div class="nav-item" onclick="showSec('st','messages',this)"><span class="nav-icon">💬</span> Messages <span class="nav-badge">2</span></div>
+        <div class="nav-item" onclick="showSec('st','events',this)"><span class="nav-icon">🗓️</span> Events</div>
+        <div class="nav-item" onclick="showSec('st','insights',this)"><span class="nav-icon">🧠</span> AI Insights</div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="session-info"><span>Session</span><span class="session-timer" id="st-timer">00:00:00</span></div>
+      <button class="btn-logout" onclick="logout()">⬅ Sign Out</button>
+    </div>
+  </nav>
+  <div class="main-area">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar('studentSidebar')">☰</button>
+        <div>
+          <div class="topbar-title" id="st-topTitle">Overview</div>
+          <div class="breadcrumb">Dorah Bloch → <span id="st-bread">Dashboard</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-top"><span style="font-size:14px;opacity:0.5">🔍</span><input type="text" placeholder="Search anything..."></div>
+        <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+        <button class="notif-btn" onclick="toggleNotif()">🔔<span class="notif-count">3</span></button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="content-section active" id="st-overview"></div>
+      <div class="content-section" id="st-results"></div>
+      <div class="content-section" id="st-reportcard"></div>
+      <div class="content-section" id="st-timetable"></div>
+      <div class="content-section" id="st-attendance"></div>
+      <div class="content-section" id="st-assignments"></div>
+      <div class="content-section" id="st-fees"></div>
+      <div class="content-section" id="st-messages"></div>
+      <div class="content-section" id="st-events"></div>
+      <div class="content-section" id="st-insights"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TEACHER PORTAL -->
+<div id="teacherPortal" class="page">
+<div class="app-shell">
+  <nav class="sidebar" id="teacherSidebar">
+    <div class="sidebar-photo">
+      <div class="sidebar-brand">
+        <div class="sb-info"><div class="sb-name">Dorah Bloch</div><div class="sb-sub">Teacher Portal</div></div>
+      </div>
+    </div>
+    <div class="sidebar-user" id="tc-user-card"></div>
+    <div class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Classroom</div>
+        <div class="nav-item active" onclick="showSec('tc','dashboard',this)"><span class="nav-icon">🏠</span> Dashboard</div>
+        <div class="nav-item" onclick="showSec('tc','grades',this)"><span class="nav-icon">✏️</span> Enter Grades</div>
+        <div class="nav-item" onclick="showSec('tc','attendance',this)"><span class="nav-icon">📅</span> Attendance</div>
+        <div class="nav-item" onclick="showSec('tc','assignments',this)"><span class="nav-icon">📝</span> Assignments</div>
+        <div class="nav-item" onclick="showSec('tc','class',this)"><span class="nav-icon">📊</span> Class Performance</div>
+        <div class="nav-item" onclick="showSec('tc','alerts',this)"><span class="nav-icon">🚨</span> Alerts <span class="nav-badge" id="tc-alertBadge">5</span></div>
+        <div class="nav-item" onclick="showSec('tc','messages',this)"><span class="nav-icon">💬</span> Messages</div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="session-info"><span>Session</span><span class="session-timer" id="tc-timer">00:00:00</span></div>
+      <button class="btn-logout" onclick="logout()">⬅ Sign Out</button>
+    </div>
+  </nav>
+  <div class="main-area">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar('teacherSidebar')">☰</button>
+        <div>
+          <div class="topbar-title" id="tc-topTitle">Dashboard</div>
+          <div class="breadcrumb">Dorah Bloch → <span id="tc-bread">Teacher Dashboard</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-top"><span style="font-size:14px;opacity:0.5">🔍</span><input type="text" placeholder="Search students..."></div>
+        <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+        <button class="notif-btn" onclick="toggleNotif()">🔔<span class="notif-count">5</span></button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="content-section active" id="tc-dashboard"></div>
+      <div class="content-section" id="tc-grades"></div>
+      <div class="content-section" id="tc-attendance"></div>
+      <div class="content-section" id="tc-assignments"></div>
+      <div class="content-section" id="tc-class"></div>
+      <div class="content-section" id="tc-alerts"></div>
+      <div class="content-section" id="tc-messages"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PARENT PORTAL -->
+<div id="parentPortal" class="page">
+<div class="app-shell">
+  <nav class="sidebar" id="parentSidebar">
+    <div class="sidebar-photo">
+      <div class="sidebar-brand">
+        <div class="sb-info"><div class="sb-name">Dorah Bloch</div><div class="sb-sub">Parent Portal</div></div>
+      </div>
+    </div>
+    <div class="sidebar-user" id="pa-user-card"></div>
+    <div class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">My Children</div>
+        <div class="nav-item active" onclick="showSec('pa','dashboard',this)"><span class="nav-icon">🏠</span> Dashboard</div>
+        <div class="nav-item" onclick="showSec('pa','progress',this)"><span class="nav-icon">📊</span> Academic Progress</div>
+        <div class="nav-item" onclick="showSec('pa','attendance',this)"><span class="nav-icon">📅</span> Attendance</div>
+        <div class="nav-item" onclick="showSec('pa','fees',this)"><span class="nav-icon">💳</span> Fees & Payments</div>
+        <div class="nav-item" onclick="showSec('pa','messages',this)"><span class="nav-icon">💬</span> Messages <span class="nav-badge">1</span></div>
+        <div class="nav-item" onclick="showSec('pa','events',this)"><span class="nav-icon">🗓️</span> School Events</div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="session-info"><span>Session</span><span class="session-timer" id="pa-timer">00:00:00</span></div>
+      <button class="btn-logout" onclick="logout()">⬅ Sign Out</button>
+    </div>
+  </nav>
+  <div class="main-area">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar('parentSidebar')">☰</button>
+        <div>
+          <div class="topbar-title" id="pa-topTitle">Parent Dashboard</div>
+          <div class="breadcrumb">Dorah Bloch → <span id="pa-bread">Dashboard</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+        <button class="notif-btn" onclick="toggleNotif()">🔔<span class="notif-count">1</span></button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="content-section active" id="pa-dashboard"></div>
+      <div class="content-section" id="pa-progress"></div>
+      <div class="content-section" id="pa-attendance"></div>
+      <div class="content-section" id="pa-fees"></div>
+      <div class="content-section" id="pa-messages"></div>
+      <div class="content-section" id="pa-events"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ADMIN PORTAL -->
+<div id="adminPortal" class="page">
+<div class="app-shell">
+  <nav class="sidebar" id="adminSidebar">
+    <div class="sidebar-photo">
+      <div class="sidebar-brand">
+        <div class="sb-info"><div class="sb-name">Dorah Bloch</div><div class="sb-sub">Admin Control</div></div>
+      </div>
+    </div>
+    <div class="sidebar-user" id="ad-user-card"></div>
+    <div class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Control Centre</div>
+        <div class="nav-item active" onclick="showSec('ad','dashboard',this)"><span class="nav-icon">🏛️</span> Dashboard</div>
+        <div class="nav-item" onclick="showSec('ad','students',this)"><span class="nav-icon">🎓</span> Students</div>
+        <div class="nav-item" onclick="showSec('ad','teachers',this)"><span class="nav-icon">👨‍🏫</span> Teachers & Staff</div>
+        <div class="nav-item" onclick="showSec('ad','results',this)"><span class="nav-icon">📊</span> Results Mgmt</div>
+        <div class="nav-item" onclick="showSec('ad','analytics',this)"><span class="nav-icon">🧠</span> Analytics</div>
+        <div class="nav-item" onclick="showSec('ad','finance',this)"><span class="nav-icon">💰</span> Finance</div>
+        <div class="nav-item" onclick="showSec('ad','monitoring',this)"><span class="nav-icon">⚡</span> Live Monitoring</div>
+        <div class="nav-item" onclick="showSec('ad','reports',this)"><span class="nav-icon">📄</span> Reports</div>
+        <div class="nav-item" onclick="showSec('ad','settings',this)"><span class="nav-icon">⚙️</span> Settings</div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="session-info"><span>Session</span><span class="session-timer" id="ad-timer">00:00:00</span></div>
+      <button class="btn-logout" onclick="logout()">⬅ Sign Out</button>
+    </div>
+  </nav>
+  <div class="main-area">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar('adminSidebar')">☰</button>
+        <div>
+          <div class="topbar-title" id="ad-topTitle">System Dashboard</div>
+          <div class="breadcrumb">Dorah Bloch → <span id="ad-bread">Admin</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-top"><span style="font-size:14px;opacity:0.5">🔍</span><input type="text" placeholder="Search system..." oninput="adminGlobalSearch(this.value)"></div>
+        <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+        <button class="btn btn-primary btn-sm" onclick="runAnalysis()">⚡ Run Analysis</button>
+        <button class="notif-btn" onclick="toggleNotif()">🔔<span class="notif-count">7</span></button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="content-section active" id="ad-dashboard"></div>
+      <div class="content-section" id="ad-students"></div>
+      <div class="content-section" id="ad-teachers"></div>
+      <div class="content-section" id="ad-results"></div>
+      <div class="content-section" id="ad-analytics"></div>
+      <div class="content-section" id="ad-finance"></div>
+      <div class="content-section" id="ad-monitoring"></div>
+      <div class="content-section" id="ad-reports"></div>
+      <div class="content-section" id="ad-settings"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ══════════════════════════════════════════════════
+//  DATA ENGINE
+// ══════════════════════════════════════════════════
+const SUBJECTS = ['Mathematics','English','Science','History','Geography','Physics','Chemistry'];
+const CLASSES = ['S1A','S1B','S2A','S2B','S3A','S3B','S4A','S4B'];
+const EXAMS = ['T1','T2','T3','Final'];
+const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+
+function seedRand(seed) {
+  let s = seed;
+  return () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0xffffffff; };
+}
+
+const NAMES = [
+  'Nakato Alice','Ssempala Brian','Akello Grace','Mugisha David','Namukasa Eva',
+  'Kato Felix','Auma Hilda','Ssali James','Nalwoga Irene','Mutebi Kevin',
+  'Achen Lydia','Ssebulime Mark','Nanteza Norah','Opira Paul','Nansubuga Rita',
+  'Tumwine Sam','Atim Tabitha','Wasswa Umar','Nankya Viola','Kizito William',
+  'Akot Xena','Ssekandi Yusuf','Nambooze Zoe','Baluku Aaron','Ayot Beatrice',
+  'Chelimo Calvin','Tibenderana Daphne','Akumu Edgar','Nassolo Faith','Mayanja George',
+  'Naiga Helen','Ssewankambo Ivan','Akello Jane','Mutungi Keith','Ouma Lilian',
+  'Mugabi Moses','Nabirye Nancy','Oluka Oscar','Namayanja Patience','Ronge Quinn',
+];
+
+function generateDB() {
+  const rand = seedRand(9731);
+  const students = NAMES.map((name, i) => {
+    const lin = `LIN-2024-${String(i+1).padStart(4,'0')}`;
+    const cls = CLASSES[i % CLASSES.length];
+    const base = 42 + Math.floor(rand() * 50);
+    const results = {};
+    EXAMS.forEach(ex => {
+      results[ex] = {};
+      SUBJECTS.forEach(sub => {
+        results[ex][sub] = Math.max(15, Math.min(100, base + Math.floor((rand()-0.48)*32)));
+      });
+    });
+    const att = Array.from({length:30}, () => {
+      const r = rand();
+      return r > 0.87 ? 'absent' : r > 0.78 ? 'late' : 'present';
+    });
+    const fees = { total: 850000, paid: Math.floor(rand() * 850001 / 50000) * 50000, currency: 'UGX' };
+    return { lin, name, class: cls, results, att, admYear: 2022 + (i%3), fees, dob: `200${4+i%7}-0${1+i%9}-${10+i%18}` };
+  });
+
+  const teachers = [
+    { id:'T001', name:'Mr. Odhiambo K.', username:'odhiambo', subject:'Mathematics', classes:['S1A','S2A','S3A'], password:'Math@2024', phone:'+256700111001' },
+    { id:'T002', name:'Mrs. Nakayiwa P.', username:'nakayiwa', subject:'English', classes:['S1B','S3B'], password:'Eng@2024', phone:'+256700111002' },
+    { id:'T003', name:'Dr. Ssemakula R.', username:'ssemakula', subject:'Science', classes:['S2A','S2B'], password:'Sci@2024', phone:'+256700111003' },
+    { id:'T004', name:'Ms. Achola B.', username:'achola', subject:'History', classes:['S1A','S1B'], password:'His@2024', phone:'+256700111004' },
+    { id:'T005', name:'Mr. Mugabo T.', username:'mugabo', subject:'Geography', classes:['S3A','S4A'], password:'Geo@2024', phone:'+256700111005' },
+    { id:'T006', name:'Ms. Nambi C.', username:'nambi', subject:'Physics', classes:['S4A','S4B'], password:'Phy@2024', phone:'+256700111006' },
+  ];
+
+  const parents = [
+    { id:'P001', username:'parent001', password:'Parent@2024', name:'Mr. & Mrs. Ssempala', children:['LIN-2024-0002','LIN-2024-0001'], phone:'+256780001001' },
+    { id:'P002', username:'parent002', password:'Parent@2024', name:'Ms. Akello Grace', children:['LIN-2024-0003'], phone:'+256780001002' },
+  ];
+
+  const notifications = [
+    { title:'Term 3 Results Published', msg:'S1A-S2B results are now available for viewing.', time:'2 hours ago', type:'info', unread:true },
+    { title:'Fee Payment Reminder', msg:'Outstanding balance due before 30th. Contact bursar.', time:'1 day ago', type:'warning', unread:true },
+    { title:'Parent-Teacher Meeting', msg:'Scheduled for Friday 15th Nov at 2PM in the hall.', time:'2 days ago', type:'info', unread:false },
+    { title:'New Assignment Posted', msg:'Mathematics: Chapter 7 exercises due next week.', time:'3 days ago', type:'info', unread:true },
+    { title:'System Maintenance', msg:'Scheduled maintenance Sunday 11PM-1AM.', time:'5 days ago', type:'warning', unread:false },
+    { title:'Academic Award', msg:'Congratulations to top performers: Nakato A., Kizito W., Mugisha D.', time:'1 week ago', type:'success', unread:false },
+    { title:'Holiday Notice', msg:'School closes 20th December for Christmas break.', time:'1 week ago', type:'info', unread:false },
+  ];
+
+  const published = [
+    { exam:'Term 1', class:'All', date:'2024-04-15', students:40, avg:72, status:'published' },
+    { exam:'Term 2', class:'All', date:'2024-08-20', students:40, avg:68, status:'published' },
+    { exam:'Term 3', class:'S1A,S2A', date:'2024-11-10', students:16, avg:74, status:'published' },
+  ];
+
+  return { students, teachers, parents, notifications, published };
+}
+
+const DB = generateDB();
+let currentUser = null, currentRole = null, loginTarget = 'student';
+let sessionStart = null, timerInterval = null, tfaInterval = null;
+const charts = {};
+
+// ── CALCULATIONS
+function calcSig(s) {
+  const all = Object.values(s.results).flatMap(e => Object.values(e));
+  const avg = all.reduce((a,b)=>a+b,0)/all.length;
+  const pct = s.att.filter(d=>d==='present').length / s.att.length * 100;
+  const sig = avg * 0.5 + pct * 0.25 + 70 * 0.25;
+  return { avg: +avg.toFixed(1), attPct: +pct.toFixed(1), signal: +sig.toFixed(1) };
+}
+function sigClass(s) { return s>=80?'strong':s>=60?'stable':s>=40?'monitor':'risk'; }
+function sigBadge(s) {
+  const c = sigClass(s);
+  const labels = {strong:'Strong',stable:'Stable',monitor:'Monitor',risk:'Intervention'};
+  return `<span class="badge b-${c}">${labels[c]}</span>`;
+}
+function grade(score) {
+  if(score>=80)return'D1';if(score>=75)return'D2';if(score>=70)return'C3';
+  if(score>=65)return'C4';if(score>=60)return'C5';if(score>=55)return'C6';
+  if(score>=45)return'P7';if(score>=35)return'P8';return'F9';
+}
+function gradeColor(score) { return score>=70?'#34d399':score>=55?'#fbbf24':'#f87171'; }
+function subjAvg(s,sub) {
+  const sc = EXAMS.map(e=>s.results[e]?.[sub]||0);
+  return +(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(1);
+}
+function termAvg(s,exam) {
+  const sc = SUBJECTS.map(sub=>s.results[exam]?.[sub]||0);
+  return +(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(1);
+}
+
+// Chart.js default options
+function co() {
+  return {
+    responsive: true,
+    plugins: { legend: { labels: { color: '#c8c6bc', font: { size: 11 } } } },
+    scales: {
+      x: { ticks: { color: '#7a9ab8', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+      y: { ticks: { color: '#7a9ab8', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' }, min: 0, max: 100 }
+    }
+  };
+}
+
+// ══════════════════════════════════════════════════
+//  AUTH
+// ══════════════════════════════════════════════════
+const AUTH = {
+  student(lin, pin) {
+    const s = DB.students.find(st => st.lin.toLowerCase()===lin.toLowerCase().trim());
+    if(!s) return null;
+    const num = s.lin.split('-')[2];
+    return (pin===num||pin==='student'||pin===s.lin) ? s : null;
+  },
+  teacher(user, pass) {
+    const t = DB.teachers.find(t=>t.username===user.toLowerCase().trim());
+    if(!t) return null;
+    return (pass===t.password||pass==='teach2024') ? t : null;
+  },
+  parent(user, pass) {
+    const p = DB.parents.find(p=>p.username===user.toLowerCase().trim());
+    if(!p) return null;
+    return (pass===p.password||pass==='parent2024') ? p : null;
+  },
+  admin(user, pass) {
+    const creds = {admin:'Dorah@2024!',principal:'Admin@2024',superadmin:'Super@2024'};
+    const key = user.toLowerCase().trim();
+    return (creds[key]===pass||pass==='admin2024')
+      ? {name: key==='principal'?'Principal Nakato':'System Administrator', role:'admin', username:user}
+      : null;
+  }
+};
+
+let loginAttempts = 0;
+let loginLocked = false;
+
+function openLogin(role) {
+  loginTarget = role;
+  loginAttempts = 0; loginLocked = false;
+  const icons = {student:'🎓',teacher:'📚',parent:'👨‍👩‍👧',admin:'🏛️'};
+  const titles = {student:'Student Access',teacher:'Teacher Login',parent:'Parent / Guardian',admin:'Administrator'};
+  const subs = {student:'Enter your LIN and PIN to continue',teacher:'Staff credentials required',parent:'Enter guardian credentials',admin:'Restricted — authorised personnel only'};
+  document.getElementById('loginIcon').textContent = icons[role];
+  document.getElementById('loginTitle').textContent = titles[role];
+  document.getElementById('loginSub').textContent = subs[role];
+  document.getElementById('fields-student').style.display = role==='student'?'block':'none';
+  document.getElementById('fields-staff').style.display = role!=='student'?'block':'none';
+  document.getElementById('loginErr').style.display = 'none';
+  const demos = {
+    student: `<strong>Student Demo:</strong><br>LIN: LIN-2024-0001 &nbsp;·&nbsp; PIN: 0001<br>Or any LIN from LIN-2024-0001 to LIN-2024-0040`,
+    teacher: `<strong>Teacher Demo:</strong><br>Username: odhiambo &nbsp;·&nbsp; Password: Math@2024<br>Or any username + password: teach2024`,
+    parent:  `<strong>Parent Demo:</strong><br>Username: parent001 &nbsp;·&nbsp; Password: Parent@2024<br>Or any username + password: parent2024`,
+    admin:   `<strong>Admin Demo:</strong><br>Username: admin &nbsp;·&nbsp; Password: Dorah@2024!<br>Or any username + password: admin2024`,
+  };
+  document.getElementById('demoCreds').innerHTML = demos[role];
+  document.getElementById('loginOverlay').classList.add('open');
+  setTimeout(()=>{
+    const inp = role==='student' ? document.getElementById('in-lin') : document.getElementById('in-user');
+    inp && inp.focus();
+  }, 400);
+}
+
+function closeLogin() {
+  document.getElementById('loginOverlay').classList.remove('open');
+}
+
+function togglePwd(id, el) {
+  const inp = document.getElementById(id);
+  if(inp.type==='password') { inp.type='text'; el.textContent='🙈'; }
+  else { inp.type='password'; el.textContent='👁'; }
+}
+
+function showForgot() {
+  toast('📧 Password reset instructions sent to your registered email/phone.','info','Recovery Email Sent');
+}
+
+function biometricLogin() {
+  const btn = document.querySelector('.biometric-btn');
+  btn.innerHTML = '⏳ &nbsp;Scanning biometric...';
+  setTimeout(()=>{
+    btn.innerHTML = '✅ &nbsp;Biometric verified!';
+    setTimeout(()=>{
+      if(loginTarget==='student') currentUser = DB.students[0];
+      else if(loginTarget==='teacher') currentUser = DB.teachers[0];
+      else if(loginTarget==='parent') currentUser = DB.parents[0];
+      else currentUser = {name:'System Administrator',role:'admin',username:'admin'};
+      currentRole = loginTarget;
+      closeLogin();
+      openTFA();
+      btn.innerHTML = '🫆 &nbsp;Sign In with Biometrics';
+    }, 800);
+  }, 2000);
+}
+
+function doLogin() {
+  if(loginLocked) { showErr('Account temporarily locked. Please wait.'); return; }
+  const btn = document.getElementById('loginSubmitBtn');
+  const inner = document.getElementById('loginBtnInner');
+  inner.innerHTML = '<span class="spinner"></span> &nbsp;Verifying...';
+  btn.disabled = true;
+  setTimeout(()=>{
+    let user = null;
+    if(loginTarget==='student') {
+      user = AUTH.student(document.getElementById('in-lin').value, document.getElementById('in-pin').value);
+    } else if(loginTarget==='teacher') {
+      user = AUTH.teacher(document.getElementById('in-user').value, document.getElementById('in-pass').value);
+    } else if(loginTarget==='parent') {
+      user = AUTH.parent(document.getElementById('in-user').value, document.getElementById('in-pass').value);
+    } else {
+      user = AUTH.admin(document.getElementById('in-user').value, document.getElementById('in-pass').value);
+    }
+    btn.disabled = false;
+    inner.innerHTML = '🔐 &nbsp;Secure Sign In';
+    if(!user) {
+      loginAttempts++;
+      if(loginAttempts >= 3) {
+        loginLocked = true;
+        showErr('Too many failed attempts. Locked for 30 seconds.');
+        setTimeout(()=>{ loginLocked=false; loginAttempts=0; document.getElementById('loginErr').style.display='none'; }, 30000);
+      } else {
+        showErr(`Invalid credentials. ${3-loginAttempts} attempt(s) remaining.`);
+      }
+      document.getElementById('loginCard').style.animation = '';
+      void document.getElementById('loginCard').offsetWidth;
+      document.getElementById('loginCard').style.animation = 'shake 0.4s ease';
+      return;
+    }
+    currentUser = user;
+    currentRole = loginTarget;
+    closeLogin();
+    openTFA();
+  }, 1200);
+}
+
+function showErr(msg) {
+  const el = document.getElementById('loginErr');
+  document.getElementById('loginErrMsg').textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── 2FA
+function openTFA() {
+  document.getElementById('tfa-desc').textContent =
+    currentRole==='student' ? `+256 78X XXX X${currentUser.lin?.slice(-2)||'00'}`
+    : currentRole==='teacher' ? (currentUser.phone?.replace(/\d{4}$/,'XXXX') || '+256 70X XXX XXXX')
+    : '+256 78X XXX XXXX';
+  for(let i=0;i<6;i++) { const el=document.getElementById('otp'+i); if(el) el.value=''; }
+  document.getElementById('tfaOverlay').classList.add('open');
+  document.getElementById('otp0').focus();
+  startTfaTimer();
+}
+
+function startTfaTimer() {
+  let t = 30;
+  if(tfaInterval) clearInterval(tfaInterval);
+  tfaInterval = setInterval(()=>{
+    t--;
+    const el = document.getElementById('tfaCountdown');
+    if(el) el.textContent = t;
+    if(t <= 0) clearInterval(tfaInterval);
+  }, 1000);
+}
+
+function otpNext(idx) {
+  const val = document.getElementById('otp'+idx).value;
+  if(val && idx < 5) document.getElementById('otp'+(idx+1)).focus();
+  if(idx===5 && val) setTimeout(verifyOtp, 300);
+}
+
+function resendOtp() {
+  for(let i=0;i<6;i++) { const el=document.getElementById('otp'+i); if(el) el.value=''; }
+  startTfaTimer();
+  toast('📲 New verification code sent!','success','Code Resent');
+  document.getElementById('otp0').focus();
+}
+
+function verifyOtp() {
+  const code = Array.from({length:6}, (_,i) => document.getElementById('otp'+i)?.value||'').join('');
+  if(code.length < 6) { toast('Please enter all 6 digits.','error','Incomplete Code'); return; }
+  if(tfaInterval) clearInterval(tfaInterval);
+  document.getElementById('tfaOverlay').classList.remove('open');
+  sessionStart = Date.now();
+  if(currentRole==='student') launchStudent();
+  else if(currentRole==='teacher') launchTeacher();
+  else if(currentRole==='parent') launchParent();
+  else launchAdmin();
+}
+
+// ══════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showSec(portal, sec, navEl) {
+  const portalMap = {st:'studentPortal',tc:'teacherPortal',pa:'parentPortal',ad:'adminPortal'};
+  const sidebarMap = {st:'studentSidebar',tc:'teacherSidebar',pa:'parentSidebar',ad:'adminSidebar'};
+  const allSecs = document.querySelectorAll(`#${portalMap[portal]} .content-section`);
+  allSecs.forEach(s=>s.classList.remove('active'));
+  const target = document.getElementById(`${portal}-${sec}`);
+  if(target) target.classList.add('active');
+  const nav = document.querySelector(`#${sidebarMap[portal]} .sidebar-nav`);
+  if(nav) nav.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(navEl) navEl.classList.add('active');
+  const titles = {
+    overview:'Overview',results:'My Results',reportcard:'Report Card',timetable:'Timetable',
+    attendance:'Attendance',assignments:'Assignments',fees:'Fees & Finance',messages:'Messages',
+    events:'School Events',insights:'AI Insights',dashboard:'Dashboard',grades:'Enter Grades',
+    class:'Class Performance',alerts:'Academic Alerts',progress:'Academic Progress',
+    students:'Student Management',teachers:'Teachers & Staff',analytics:'School Analytics',
+    finance:'Finance',monitoring:'Live Monitoring',reports:'Reports',settings:'Settings'
+  };
+  const title = titles[sec] || sec;
+  const topEl = document.getElementById(`${portal}-topTitle`);
+  const breadEl = document.getElementById(`${portal}-bread`);
+  if(topEl) topEl.textContent = title;
+  if(breadEl) breadEl.textContent = title;
+}
+
+function toggleSidebar(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function toggleNotif() {
+  document.getElementById('notifPanel').classList.toggle('open');
+  renderNotifications();
+}
+
+function renderNotifications() {
+  document.getElementById('notifList').innerHTML = DB.notifications.map(n=>`
+    <div class="notif-item ${n.unread?'unread':''}" onclick="this.classList.remove('unread')">
+      <h5>${n.title}</h5>
+      <p>${n.msg}</p>
+      <div class="notif-time">${n.time}</div>
+    </div>`).join('');
+}
+
+function logout() {
+  if(timerInterval) clearInterval(timerInterval);
+  currentUser = null; currentRole = null; sessionStart = null;
+  Object.values(charts).forEach(c=>{ try{c.destroy();}catch(e){} });
+  Object.keys(charts).forEach(k=>delete charts[k]);
+  showPage('landingPage');
+  toast('You have been securely signed out.','info','Signed Out');
+}
+
+function startTimer(id) {
+  if(timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(()=>{
+    const elapsed = Date.now() - sessionStart;
+    const h = Math.floor(elapsed/3600000), m = Math.floor((elapsed%3600000)/60000), s = Math.floor((elapsed%60000)/1000);
+    const str = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    const el = document.getElementById(id);
+    if(el) el.textContent = str;
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════════
+//  TOAST SYSTEM
+// ══════════════════════════════════════════════════
+function toast(msg, type='info', title='') {
+  const icons = {success:'✅',error:'❌',warning:'⚠️',info:'ℹ️'};
+  const container = document.getElementById('toastContainer');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `<div class="toast-icon">${icons[type]||'ℹ️'}</div><div class="toast-body"><div class="toast-title">${title||type.toUpperCase()}</div><div class="toast-msg">${msg}</div></div>`;
+  container.appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateX(100%)'; el.style.transition='all 0.3s'; setTimeout(()=>el.remove(),300); }, 4000);
+}
+
+// ══════════════════════════════════════════════════
+//  LIVE TOAST SIMULATION
+// ══════════════════════════════════════════════════
+function startLiveToasts() {
+  const msgs = [
+    ['📊 New results uploaded for S3B','info','Results Update'],
+    ['⚠️ Nakato Alice: Attendance below 70%','warning','Attendance Alert'],
+    ['💳 Fee payment received: LIN-2024-0012','success','Payment Confirmed'],
+    ['📝 New assignment posted: Chemistry Lab Report','info','New Assignment'],
+    ['🏆 Term 3 rankings updated','success','Rankings Published'],
+  ];
+  let i = 0;
+  setTimeout(function fire() {
+    if(currentUser && msgs[i]) {
+      toast(msgs[i][0], msgs[i][1], msgs[i][2]);
+      i = (i+1) % msgs.length;
+      setTimeout(fire, 18000 + Math.random()*12000);
+    }
+  }, 8000);
+}
+
+// ══════════════════════════════════════════════════
+//  PARTICLES
+// ══════════════════════════════════════════════════
+(function initParticles() {
+  const container = document.getElementById('particles');
+  for(let i=0;i<20;i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random()*100+'%';
+    p.style.animationDuration = (8+Math.random()*14)+'s';
+    p.style.animationDelay = (Math.random()*8)+'s';
+    p.style.width = p.style.height = (1+Math.random()*2)+'px';
+    container.appendChild(p);
+  }
+})();
+
+// ══════════════════════════════════════════════════
+//  STUDENT PORTAL
+// ══════════════════════════════════════════════════
+function launchStudent() {
+  showPage('studentPortal');
+  const s = currentUser;
+  const sig = calcSig(s);
+  renderStudentUserCard(s);
+  renderStudentOverview(s, sig);
+  renderStudentResults(s);
+  renderStudentReportCard(s, sig);
+  renderStudentTimetable();
+  renderStudentAttendance(s);
+  renderStudentAssignments(s);
+  renderStudentFees(s);
+  renderStudentMessages();
+  renderEvents('st');
+  renderStudentInsights(s, sig);
+  startTimer('st-timer');
+  startLiveToasts();
+  toast(`Welcome back, ${s.name.split(' ')[0]}!`,'success','🎓 Logged In');
+}
+
+function renderStudentUserCard(s) {
+  document.getElementById('st-user-card').innerHTML = `
+    <div class="s-avatar">${s.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+    <div>
+      <div class="s-name">${s.name.split(' ')[0]}</div>
+      <div class="s-lin">${s.lin}</div>
+      <div class="s-role">Class ${s.class}</div>
+    </div>`;
+}
+
+function getBestSubject(s) {
+  return SUBJECTS.map(sub=>({sub,avg:subjAvg(s,sub)})).sort((a,b)=>b.avg-a.avg)[0].sub;
+}
+function getWeakSubject(s) {
+  return SUBJECTS.map(sub=>({sub,avg:subjAvg(s,sub)})).sort((a,b)=>a.avg-b.avg)[0].sub;
+}
+
+function generateAiSummary(s, sig) {
+  if(sig.signal>=80) return `Outstanding academic performance! Your signal score of ${sig.signal} places you in the top tier. You demonstrate exceptional consistency across all subjects. Continue your rigorous study habits and targeted practice to maintain this excellence.`;
+  if(sig.signal>=60) return `You are performing well with an overall signal of ${sig.signal}. Your academic trajectory shows improvement over the past terms. Strengthening ${getWeakSubject(s)} could push you into the Distinguished tier. Consider forming study groups and reviewing past exam questions.`;
+  if(sig.signal>=40) return `Your academic signal of ${sig.signal} requires attention. Several subjects need focused revision. Your attendance record and performance in ${getWeakSubject(s)} have triggered a monitoring flag. The AI recommends 45-minute daily targeted practice sessions.`;
+  return `Immediate academic intervention is recommended. Signal score ${sig.signal} indicates multiple risk factors. Please arrange a meeting with your class teacher and guidance counsellor.`;
+}
+
+function renderStudentOverview(s, sig) {
+  const classStudents = DB.students.filter(st=>st.class===s.class);
+  const rank = [...classStudents].sort((a,b)=>calcSig(b).avg-calcSig(a).avg).findIndex(st=>st.lin===s.lin)+1;
+  const termAvgs = EXAMS.map(e=>termAvg(s,e));
+  document.getElementById('st-overview').innerHTML = `
+    <div class="profile-hero">
+      <div class="profile-hero-overlay">
+        <div class="ph-avatar">${s.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+        <div class="ph-info">
+          <h2>${s.name}</h2>
+          <p>${s.lin} &nbsp;·&nbsp; Class ${s.class} &nbsp;·&nbsp; Admitted ${s.admYear} &nbsp;·&nbsp; DOB: ${s.dob}</p>
+          <div class="ph-meta">
+            <div><div class="ph-m-val">${sig.avg}</div><div class="ph-m-lbl">Overall Avg</div></div>
+            <div><div class="ph-m-val">${sig.attPct}%</div><div class="ph-m-lbl">Attendance</div></div>
+            <div><div class="ph-m-val">#${rank}</div><div class="ph-m-lbl">Class Rank</div></div>
+            <div><div class="ph-m-val">${grade(sig.avg)}</div><div class="ph-m-lbl">Grade</div></div>
+          </div>
+        </div>
+        <div style="margin-left:auto">${sigBadge(sig.signal)}</div>
+      </div>
+    </div>
+    ${sig.avg<55||sig.attPct<70?`<div style="background:rgba(139,26,48,0.12);border:1px solid rgba(192,36,63,0.25);border-radius:12px;padding:14px 20px;margin-bottom:20px;font-size:13px;color:#f87171">
+      ⚠️ <strong>Academic Alert:</strong> ${sig.avg<55?`Average score (${sig.avg}) is below 55. `:''}${sig.attPct<70?`Attendance (${sig.attPct}%) is below the 70% minimum.`:''}</div>`:''}
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">📊</div><div class="stat-val">${sig.avg}</div><div class="stat-lbl">Current Average</div><span class="stat-trend trend-up">↑ +2.4</span></div>
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">📅</div><div class="stat-val">${sig.attPct}%</div><div class="stat-lbl">Attendance Rate</div></div>
+      <div class="stat-box" style="--accent-c:#60a5fa"><div class="stat-icon">🏆</div><div class="stat-val">#${rank}</div><div class="stat-lbl">Class Rank of ${classStudents.length}</div></div>
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">⚡</div><div class="stat-val">${sig.signal}</div><div class="stat-lbl">Signal Score</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>📈 Performance Trend — All Terms</h3><canvas id="st-trend-chart" height="200"></canvas></div>
+      <div class="card"><h3>🎯 Subject Radar</h3><canvas id="st-radar-chart" height="200"></canvas></div>
+    </div>
+    <div class="ai-insight">
+      <h4>🧠 Academic Intelligence Report — ${s.name.split(' ')[0]}</h4>
+      <p>${generateAiSummary(s, sig)}</p>
+      <p style="margin-top:10px;font-size:11px;color:var(--muted)">
+        📌 Predicted Final Avg: <strong style="color:var(--gold2)">${Math.min(100,Math.round(sig.avg*1.04))}</strong> &nbsp;·&nbsp;
+        💪 Strongest: <strong style="color:#34d399">${getBestSubject(s)}</strong> &nbsp;·&nbsp;
+        ⚠️ Focus: <strong style="color:#f87171">${getWeakSubject(s)}</strong>
+      </p>
+    </div>`;
+  setTimeout(()=>{
+    if(charts.stTrend) charts.stTrend.destroy();
+    charts.stTrend = new Chart(document.getElementById('st-trend-chart'), {
+      type:'line', data:{ labels:['Term 1','Term 2','Term 3','Final'], datasets:[{label:'Average',data:termAvgs,borderColor:'#c9983a',backgroundColor:'rgba(201,152,58,0.1)',tension:0.4,fill:true,pointBackgroundColor:'#c9983a',pointRadius:5}]},options:co()});
+    if(charts.stRadar) charts.stRadar.destroy();
+    charts.stRadar = new Chart(document.getElementById('st-radar-chart'), {
+      type:'radar', data:{ labels:SUBJECTS.map(s=>s.slice(0,5)), datasets:[{label:'Score',data:SUBJECTS.map(sub=>subjAvg(s,sub)),borderColor:'#c9983a',backgroundColor:'rgba(201,152,58,0.15)',pointBackgroundColor:'#c9983a'}]},
+      options:{...co(),scales:{r:{min:0,max:100,ticks:{color:'#888',font:{size:9}},grid:{color:'rgba(255,255,255,0.05)'},pointLabels:{color:'#c8c6bc',font:{size:10}}}}}});
+  }, 120);
+}
+
+function renderStudentResults(s) {
+  const tabs = EXAMS.map((e,i)=>`<button class="tab ${i===0?'active':''}" onclick="switchStudentExam('${e}',this)">${e==='T1'?'Term 1':e==='T2'?'Term 2':e==='T3'?'Term 3':'Final Exam'}</button>`).join('');
+  const buildGrid = (exam) => SUBJECTS.map(sub=>{const score=s.results[exam]?.[sub]||0;const color=gradeColor(score);return`<div class="subj-card"><div class="subj-name">${sub}</div><div class="subj-score" style="color:${color}">${score}</div><div class="subj-grade">${grade(score)} · ${score>=55?'Pass':'Fail'}</div><div class="subj-bar"><div class="subj-bar-fill" style="width:${score}%"></div></div></div>`;}).join('');
+  document.getElementById('st-results').innerHTML = `
+    <div class="section-hdr"><h2>Academic Results</h2><p>Your marks across all subjects and examination types</p></div>
+    <div class="tab-bar" id="results-tabs">${tabs}</div>
+    <div class="subjects-grid" id="results-grid">${buildGrid('T1')}</div>
+    <div class="card" style="margin-top:20px"><h3>📊 Term Comparison</h3><canvas id="st-bar-chart" height="180"></canvas></div>`;
+  setTimeout(()=>{
+    if(charts.stBar) charts.stBar.destroy();
+    charts.stBar = new Chart(document.getElementById('st-bar-chart'),{type:'bar',data:{labels:SUBJECTS.map(sub=>sub.slice(0,5)),datasets:EXAMS.map((e,i)=>({label:e==='T1'?'Term 1':e==='T2'?'Term 2':e==='T3'?'Term 3':'Final',data:SUBJECTS.map(sub=>s.results[e]?.[sub]||0),backgroundColor:`hsla(${30+i*40},70%,55%,0.7)`,borderRadius:4}))},options:co()});
+  }, 120);
+}
+
+window.switchStudentExam = function(exam, el) {
+  document.querySelectorAll('#results-tabs .tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const grid = document.getElementById('results-grid');
+  if(!grid||!currentUser) return;
+  const s = currentUser;
+  grid.innerHTML = SUBJECTS.map(sub=>{const score=s.results[exam]?.[sub]||0;const color=gradeColor(score);return`<div class="subj-card"><div class="subj-name">${sub}</div><div class="subj-score" style="color:${color}">${score}</div><div class="subj-grade">${grade(score)}</div><div class="subj-bar"><div class="subj-bar-fill" style="width:${score}%"></div></div></div>`;}).join('');
+};
+
+function renderStudentReportCard(s, sig) {
+  const classStudents = DB.students.filter(st=>st.class===s.class);
+  const rank = [...classStudents].sort((a,b)=>calcSig(b).avg-calcSig(a).avg).findIndex(st=>st.lin===s.lin)+1;
+  document.getElementById('st-reportcard').innerHTML = `
+    <div class="section-hdr"><h2>Official Report Card</h2><p>Academic Year 2024–2025 · Confidential Document</p></div>
+    <div class="table-card">
+      <div class="table-hdr">
+        <div><h3>🏛️ Dorah Bloch School — Official Academic Report</h3><p style="font-size:11px;color:var(--muted);margin-top:4px">${s.name} &nbsp;·&nbsp; ${s.lin} &nbsp;·&nbsp; Class ${s.class} &nbsp;·&nbsp; Year ${s.admYear}</p></div>
+        <div style="display:flex;gap:8px"><button class="btn btn-primary btn-sm" onclick="printReport()">🖨️ Print</button><button class="btn btn-ghost btn-sm" onclick="exportPDF()">📥 Export PDF</button></div>
+      </div>
+      <table>
+        <thead><tr><th>Subject</th><th>Term 1</th><th>Term 2</th><th>Term 3</th><th>Final</th><th>Average</th><th>Grade</th><th>Remarks</th></tr></thead>
+        <tbody>${SUBJECTS.map(sub=>{const avg=subjAvg(s,sub);const remark=avg>=75?'Distinction':avg>=60?'Credit':avg>=50?'Pass':'Fail';return`<tr><td style="font-weight:600">${sub}</td>${EXAMS.map(e=>`<td>${s.results[e]?.[sub]||'—'}</td>`).join('')}<td style="font-weight:700;color:${gradeColor(avg)}">${avg}</td><td><span class="badge b-gold">${grade(avg)}</span></td><td style="font-size:11px;color:${avg>=60?'#34d399':avg>=50?'#fbbf24':'#f87171'}">${remark}</td></tr>`;}).join('')}</tbody>
+      </table>
+      <div style="padding:20px 22px;border-top:1px solid var(--border);display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+        <div><div style="font-size:11px;color:var(--muted)">Overall Average</div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--gold2)">${sig.avg}</div></div>
+        <div><div style="font-size:11px;color:var(--muted)">Class Rank</div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700">#${rank} / ${classStudents.length}</div></div>
+        <div><div style="font-size:11px;color:var(--muted)">Attendance</div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700">${sig.attPct}%</div></div>
+        <div><div style="font-size:11px;color:var(--muted)">Academic Signal</div><div style="margin-top:6px">${sigBadge(sig.signal)}</div></div>
+        <div style="flex:1;min-width:240px">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Class Teacher's Comment</div>
+          <div style="font-size:13px;color:var(--cream);font-style:italic;line-height:1.7;background:rgba(201,152,58,0.06);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0">
+            "${sig.signal>=70?'Excellent performance. Keep up the outstanding effort and continue demonstrating leadership in the classroom.':sig.signal>=50?'Good progress this term. Focus and consistency in weaker subjects will lead to greater achievement.':'This student requires immediate academic support. A personalised intervention plan has been put in place.'}"
+          </div>
+          <div style="font-size:11px;color:var(--muted2);margin-top:8px">Signed: _____________ &nbsp;·&nbsp; Date: ${new Date().toLocaleDateString('en-GB')}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderStudentTimetable() {
+  const schedule = {
+    'P1 7:30-8:20': ['Math','English','Science','History','Geography'],
+    'P2 8:20-9:10': ['English','Math','History','Science','Physics'],
+    'P3 9:10-10:00': ['Science','Chemistry','Math','English','Math'],
+    'BREAK 10:00-10:20': ['BREAK','BREAK','BREAK','BREAK','BREAK'],
+    'P4 10:20-11:10': ['History','Science','English','Math','Science'],
+    'P5 11:10-12:00': ['Geography','History','Chemistry','Physics','English'],
+    'LUNCH 12:00-13:00': ['LUNCH','LUNCH','LUNCH','LUNCH','LUNCH'],
+    'P6 13:00-13:50': ['Physics','Geography','Math','Chemistry','History'],
+    'P7 13:50-14:40': ['Chemistry','Physics','Geography','English','Math'],
+  };
+  const colors = {Math:'tt-math',English:'tt-eng',Science:'tt-sci',History:'tt-hist',Geography:'tt-geo',Physics:'tt-geo',Chemistry:'tt-sci',BREAK:'tt-break',LUNCH:'tt-break'};
+  let gridHtml = `<div class="tt-hdr" style="background:transparent;border-color:transparent"></div>`;
+  gridHtml += DAYS.map(d=>`<div class="tt-hdr">${d.slice(0,3)}</div>`).join('');
+  Object.entries(schedule).forEach(([time, periods])=>{
+    const parts = time.split(' ');
+    gridHtml += `<div class="tt-time">${parts[0]}<br><span style="font-size:9px">${parts[1]||''}</span></div>`;
+    periods.forEach(p=>{ gridHtml += `<div class="tt-cell ${colors[p]||'tt-break'}">${p}</div>`; });
+  });
+  document.getElementById('st-timetable').innerHTML = `
+    <div class="section-hdr"><h2>Weekly Timetable</h2><p>Class ${currentUser.class} · Academic Year 2024–2025 · Term 3</p></div>
+    <div class="card mb20"><div class="timetable-grid">${gridHtml}</div></div>
+    <div class="card"><h3>📌 Upcoming Deadlines</h3>
+      ${['Math: Chapter 7 Exercises — Due Monday','English: Essay Draft — Due Wednesday','Science: Lab Report — Due Friday','History: Research Paper — Due Next Week'].map(d=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
+          <span style="font-size:13px">${d.split('—')[0]}</span>
+          <span style="font-size:11px;color:var(--gold)">— ${d.split('—')[1]}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderStudentAttendance(s) {
+  const present = s.att.filter(d=>d==='present').length;
+  const absent = s.att.filter(d=>d==='absent').length;
+  const late = s.att.filter(d=>d==='late').length;
+  const pct = (present/30*100).toFixed(0);
+  const dayHdrs = ['Mo','Tu','We','Th','Fr','Sa','Su'].map(d=>`<div class="att-day-hdr">${d}</div>`).join('');
+  const dayCells = s.att.map((st,i)=>`<div class="att-day-cell ad-${st}" title="Day ${i+1}: ${st}">${i+1}</div>`).join('');
+  document.getElementById('st-attendance').innerHTML = `
+    <div class="section-hdr"><h2>Attendance Record</h2><p>Current term daily attendance history</p></div>
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">✅</div><div class="stat-val">${present}</div><div class="stat-lbl">Days Present</div></div>
+      <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">❌</div><div class="stat-val">${absent}</div><div class="stat-lbl">Days Absent</div></div>
+      <div class="stat-box" style="--accent-c:#fbbf24"><div class="stat-icon">⏰</div><div class="stat-val">${late}</div><div class="stat-lbl">Late Arrivals</div></div>
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">📊</div><div class="stat-val">${pct}%</div><div class="stat-lbl">Attendance Rate</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>📅 This Month — Daily Calendar</h3>
+        <div class="att-cal-grid">${dayHdrs}${dayCells}</div>
+        <div style="display:flex;gap:16px;margin-top:14px;font-size:11px;color:var(--muted)"><span>🟢 Present</span><span>🔴 Absent</span><span>🟡 Late</span></div>
+      </div>
+      <div class="card"><h3>📈 Attendance Breakdown</h3><canvas id="att-donut" height="220"></canvas></div>
+    </div>`;
+  setTimeout(()=>{
+    if(charts.attDonut) charts.attDonut.destroy();
+    charts.attDonut = new Chart(document.getElementById('att-donut'),{type:'doughnut',data:{labels:['Present','Late','Absent'],datasets:[{data:[present,late,absent],backgroundColor:['rgba(10,94,50,0.7)','rgba(184,92,0,0.7)','rgba(139,26,48,0.7)'],borderWidth:0}]},options:{plugins:{legend:{labels:{color:'#c8c6bc'}}},cutout:'65%'}});
+  }, 100);
+}
+
+function renderStudentAssignments(s) {
+  const rand = seedRand(parseInt(s.lin.split('-')[2]||7)*13);
+  const asgs = SUBJECTS.slice(0,5).flatMap((sub,i)=>[
+    {sub, title:`${sub} Worksheet ${i+1}`, due:`2024-11-${String(10+i*3).padStart(2,'0')}`, status:rand()>0.3?'submitted':'pending', score:rand()>0.3?Math.floor(rand()*25)+75:null},
+    {sub, title:`${sub} Project`, due:`2024-12-${String(5+i*2).padStart(2,'0')}`, status:rand()>0.5?'submitted':'missing', score:rand()>0.5?Math.floor(rand()*20)+78:null},
+  ]);
+  document.getElementById('st-assignments').innerHTML = `
+    <div class="section-hdr"><h2>Assignments</h2><p>Track all your submitted and pending work</p></div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>Assignment Tracker</h3><span class="badge b-gold">${asgs.filter(a=>a.status==='pending').length} Pending</span></div>
+      <table>
+        <thead><tr><th>Subject</th><th>Title</th><th>Due Date</th><th>Status</th><th>Score</th></tr></thead>
+        <tbody>${asgs.map(a=>`<tr><td>${a.sub}</td><td style="font-weight:500">${a.title}</td><td class="mono" style="font-size:11px">${a.due}</td><td><span class="badge ${a.status==='submitted'?'b-strong':a.status==='pending'?'b-monitor':'b-risk'}">${a.status}</span></td><td>${a.score?`<strong>${a.score}/100</strong>`:'<span style="color:var(--muted)">—</span>'}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+function renderStudentFees(s) {
+  const pct = Math.min(100, Math.round(s.fees.paid/s.fees.total*100));
+  const balance = s.fees.total - s.fees.paid;
+  const f = n => n.toLocaleString();
+  document.getElementById('st-fees').innerHTML = `
+    <div class="section-hdr"><h2>Fees & Finance</h2><p>Academic Year 2024–2025 · Term 3</p></div>
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">💰</div><div class="stat-val">${f(s.fees.total)}</div><div class="stat-lbl">Total Term Fees (UGX)</div></div>
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">✅</div><div class="stat-val">${f(s.fees.paid)}</div><div class="stat-lbl">Amount Paid (UGX)</div></div>
+      <div class="stat-box" style="--accent-c:${balance>0?'#f87171':'#34d399'}"><div class="stat-icon">📋</div><div class="stat-val">${f(balance)}</div><div class="stat-lbl">Balance Due (UGX)</div>${balance>0?'<span class="stat-trend trend-dn">Overdue</span>':''}</div>
+    </div>
+    <div class="card mb20">
+      <h3>💳 Payment Progress</h3>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px"><span>UGX ${f(s.fees.paid)} paid</span><span style="color:var(--gold)">${pct}%</span></div>
+      <div class="fee-bar"><div class="fee-fill" style="width:${pct}%"></div></div>
+      <div style="margin-top:8px;font-size:11px;color:var(--muted)">Balance: UGX ${f(balance)} · Due Date: 30th November 2024</div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>Payment History</h3></div>
+      <table>
+        <thead><tr><th>Date</th><th>Reference</th><th>Amount (UGX)</th><th>Method</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">2024-09-05</td><td class="mono">DB-TXN-0049</td><td>${f(Math.floor(s.fees.paid*0.6))}</td><td>Mobile Money</td><td><span class="badge b-strong">Confirmed</span></td></tr>
+          ${s.fees.paid > s.fees.total*0.6 ? `<tr><td class="mono">2024-10-18</td><td class="mono">DB-TXN-0287</td><td>${f(s.fees.paid - Math.floor(s.fees.paid*0.6))}</td><td>Bank Transfer</td><td><span class="badge b-strong">Confirmed</span></td></tr>` : ''}
+        </tbody>
+      </table>
+    </div>
+    ${balance>0?`<div class="card" style="border-color:rgba(192,36,63,0.3)"><h3 style="color:#f87171">⚠️ Outstanding Balance</h3><p style="font-size:13px;color:var(--muted);line-height:1.7">Your account has an outstanding balance of <strong style="color:#f87171">UGX ${f(balance)}</strong>. Please settle with the school bursar before the deadline. Mobile Money: <strong style="color:var(--gold2)">0780-BURSAR</strong></p></div>`:`<div class="card" style="border-color:rgba(10,94,50,0.4)"><h3 style="color:#34d399">✅ Fees Fully Paid</h3><p style="font-size:13px;color:var(--muted)">Your fees for this term are fully settled. Thank you!</p></div>`}`;
+}
+
+function renderStudentMessages() {
+  document.getElementById('st-messages').innerHTML = `
+    <div class="section-hdr"><h2>Messages</h2><p>Communication with teachers and administration</p></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>💬 Class Teacher</h3>
+        <div class="msg-thread">
+          <div class="msg-bubble msg-in"><div>Hello ${currentUser.name.split(' ')[0]}! Please remember the science project is due this Friday.</div><div class="msg-meta">Mr. Odhiambo · Mon 10:24</div></div>
+          <div class="msg-bubble msg-out"><div>Thank you, sir. I have already started working on it.</div><div class="msg-meta">You · Mon 11:05</div></div>
+          <div class="msg-bubble msg-in"><div>Great! Also, your Math score improved significantly this term. Keep it up!</div><div class="msg-meta">Mr. Odhiambo · Mon 11:08</div></div>
+        </div>
+        <div class="msg-input-wrap">
+          <input type="text" id="msg-inp-1" placeholder="Type a message...">
+          <button class="btn btn-primary btn-sm" onclick="sendMsg('msg-inp-1')">Send</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>📢 School Administration</h3>
+        <div class="msg-thread">
+          <div class="msg-bubble msg-in"><div>Dear students, term 3 exams begin on 2nd December. Please collect your exam timetables from the notice board.</div><div class="msg-meta">Admin · 2 days ago</div></div>
+          <div class="msg-bubble msg-in"><div>Reminder: Library open on Saturdays 8AM–12PM for exam prep. All students welcome.</div><div class="msg-meta">Librarian · 4 days ago</div></div>
+        </div>
+        <div class="msg-input-wrap">
+          <input type="text" id="msg-inp-2" placeholder="Type a message...">
+          <button class="btn btn-primary btn-sm" onclick="sendMsg('msg-inp-2')">Send</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderEvents(portal) {
+  const events = [
+    {day:2,mon:'Dec',title:'Term 3 Examinations Begin',desc:'All streams · Collect exam cards from admin',type:'📝 Exam',color:'b-risk'},
+    {day:15,mon:'Dec',title:'Prize-Giving Ceremony',desc:'School hall · All students and parents invited',type:'🏆 Event',color:'b-gold'},
+    {day:20,mon:'Dec',title:'Christmas Holiday Break Begins',desc:'School closes for the Christmas break',type:'🎄 Holiday',color:'b-stable'},
+    {day:6,mon:'Jan',title:'Term 1 2025 Opens',desc:'New academic term · All students report by 7:30AM',type:'📚 Academic',color:'b-strong'},
+    {day:10,mon:'Jan',title:'Sports Day',desc:'School grounds · All classes participate',type:'⚽ Sport',color:'b-monitor'},
+  ];
+  const html = `
+    <div class="section-hdr"><h2>School Events</h2><p>Upcoming events, examinations and activities</p></div>
+    <div class="card">${events.map(e=>`
+      <div class="event-item">
+        <div class="event-date-box"><div class="event-day">${e.day}</div><div class="event-mon">${e.mon}</div></div>
+        <div class="event-info"><h5>${e.title}</h5><p>${e.desc}</p><div class="event-type"><span class="badge ${e.color}">${e.type}</span></div></div>
+      </div>`).join('')}
+    </div>`;
+  if(portal) {
+    const el = document.getElementById(`${portal}-events`);
+    if(el) el.innerHTML = html;
+  } else {
+    ['st','pa'].forEach(p=>{ const el=document.getElementById(`${p}-events`); if(el) el.innerHTML=html; });
+  }
+}
+
+function renderStudentInsights(s, sig) {
+  const insights = [
+    {icon:'📈',title:'Performance Trajectory Analysis',text:sig.avg>65?`Your academic trajectory shows consistent improvement with a current average of ${sig.avg}. The AI model predicts a final score of ${Math.min(100,Math.round(sig.avg*1.04))} if current study habits are maintained.`:`Your average of ${sig.avg} requires attention. The AI model indicates that 45 additional minutes of daily revision could improve your score by an estimated 8–12%.`},
+    {icon:'🎯',title:'Subject Strength Analysis',text:`${getBestSubject(s)} is your strongest subject with a running average of ${subjAvg(s,getBestSubject(s))}. Leverage this in related subjects and mentor peers where possible.`},
+    {icon:'⚠️',title:'Improvement Priority',text:`${getWeakSubject(s)} requires focused attention (running avg: ${subjAvg(s,getWeakSubject(s))}). Review core concepts from Term 1, complete past paper questions, and schedule additional help sessions with your teacher.`},
+    {icon:'📅',title:'Attendance Impact Analysis',text:sig.attPct>=85?`Your attendance rate of ${sig.attPct}% is excellent and positively correlates with your academic performance.`:`Your attendance of ${sig.attPct}% is below the recommended 85% threshold. The AI estimates a potential 6–10% score improvement with full attendance.`},
+    {icon:'🔮',title:'Predictive Academic Forecast',text:`Based on 12 performance indicators, the AI forecasts your end-of-year standing as <strong style="color:${sig.signal>=75?'#34d399':sig.signal>=55?'#fbbf24':'#f87171'}">${sig.signal>=75?'Distinction Candidate':sig.signal>=55?'On Track':'Requires Intervention'}</strong>. Probability of meeting promotion requirements: <strong style="color:var(--gold2)">${Math.min(99,Math.round(50+sig.signal*0.5))}%</strong>.`},
+  ];
+  document.getElementById('st-insights').innerHTML = `
+    <div class="section-hdr"><h2>AI Academic Insights</h2><p>Powered by Dorah Bloch Academic Intelligence Engine v3.2</p></div>
+    ${insights.map(ins=>`<div class="ai-insight"><h4>${ins.icon} ${ins.title}</h4><p>${ins.text}</p></div>`).join('')}`;
+}
+
+// ══════════════════════════════════════════════════
+//  TEACHER PORTAL
+// ══════════════════════════════════════════════════
+function launchTeacher() {
+  showPage('teacherPortal');
+  const t = currentUser;
+  const initials = (t.name.match(/\b\w/g)||[]).slice(0,2).join('');
+  document.getElementById('tc-user-card').innerHTML = `
+    <div class="s-avatar">${initials}</div>
+    <div><div class="s-name">${t.name}</div><div class="s-lin">${t.id}</div><div class="s-role">${t.subject}</div></div>`;
+  renderTeacherDash(t);
+  renderTeacherGrades(t);
+  renderTeacherAttendance();
+  renderTeacherAssignments();
+  renderTeacherClass();
+  renderTeacherAlerts();
+  renderTeacherMessages(t);
+  startTimer('tc-timer');
+  startLiveToasts();
+  toast(`Welcome, ${t.name}!`,'success','📚 Teacher Login');
+}
+
+function renderTeacherDash(t) {
+  const myStudents = DB.students.filter(s=>t.classes.includes(s.class));
+  const allSigs = myStudents.map(s=>calcSig(s));
+  const avg = (allSigs.reduce((a,b)=>a+b.avg,0)/allSigs.length).toFixed(1);
+  const atRisk = allSigs.filter(s=>s.signal<50).length;
+  document.getElementById('tc-dashboard').innerHTML = `
+    <div class="section-hdr"><h2>Welcome, ${t.name}</h2><p>${t.subject} Teacher · Classes: ${t.classes.join(', ')}</p></div>
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">🎓</div><div class="stat-val">${myStudents.length}</div><div class="stat-lbl">My Students</div></div>
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">📊</div><div class="stat-val">${avg}</div><div class="stat-lbl">Class Average</div></div>
+      <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">🚨</div><div class="stat-val">${atRisk}</div><div class="stat-lbl">At Risk Students</div></div>
+      <div class="stat-box" style="--accent-c:#60a5fa"><div class="stat-icon">✅</div><div class="stat-val">94%</div><div class="stat-lbl">Today's Attendance</div></div>
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">📝</div><div class="stat-val">8</div><div class="stat-lbl">Pending to Mark</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>📊 Class Average by Subject</h3><canvas id="tc-subj-chart" height="220"></canvas></div>
+      <div class="card"><h3>🚦 Performance Distribution</h3><canvas id="tc-dist-chart" height="220"></canvas></div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>🏆 Top Performers</h3></div>
+      <table>
+        <thead><tr><th>Rank</th><th>LIN</th><th>Name</th><th>Avg</th><th>Signal</th><th>Status</th></tr></thead>
+        <tbody>${[...myStudents].sort((a,b)=>calcSig(b).avg-calcSig(a).avg).slice(0,8).map((s,i)=>{const sig=calcSig(s);return`<tr><td class="${i===0?'rank-gold':i===1?'rank-silver':i===2?'rank-bronze':''}">#${i+1}</td><td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td><td>${s.name}</td><td><strong>${sig.avg}</strong></td><td><div class="sig-bar"><div class="sig-track"><div class="sig-fill sf-${sigClass(sig.signal)}" style="width:${sig.signal}%"></div></div><span class="sig-val">${sig.signal}</span></div></td><td>${sigBadge(sig.signal)}</td></tr>`;}).join('')}</tbody>
+      </table>
+    </div>`;
+  setTimeout(()=>{
+    if(charts.tcSubj) charts.tcSubj.destroy();
+    const subjAvgs = SUBJECTS.map(sub=>{const sc=myStudents.map(s=>subjAvg(s,sub));return+(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(1);});
+    charts.tcSubj = new Chart(document.getElementById('tc-subj-chart'),{type:'bar',data:{labels:SUBJECTS.map(s=>s.slice(0,5)),datasets:[{label:'Class Avg',data:subjAvgs,backgroundColor:'rgba(201,152,58,0.7)',borderRadius:6}]},options:co()});
+    if(charts.tcDist) charts.tcDist.destroy();
+    const sigs=myStudents.map(s=>calcSig(s).signal);
+    charts.tcDist = new Chart(document.getElementById('tc-dist-chart'),{type:'doughnut',data:{labels:['Strong','Stable','Monitor','Intervention'],datasets:[{data:[sigs.filter(s=>s>=80).length,sigs.filter(s=>s>=60&&s<80).length,sigs.filter(s=>s>=40&&s<60).length,sigs.filter(s=>s<40).length],backgroundColor:['rgba(10,94,50,0.7)','rgba(18,97,160,0.7)','rgba(184,92,0,0.7)','rgba(139,26,48,0.7)'],borderWidth:0}]},options:{plugins:{legend:{labels:{color:'#c8c6bc'}}},cutout:'60%'}});
+  }, 100);
+}
+
+function renderTeacherGrades(t) {
+  const myStudents = DB.students.filter(s=>t.classes.includes(s.class));
+  document.getElementById('tc-grades').innerHTML = `
+    <div class="section-hdr"><h2>Grade Entry</h2><p>Enter and manage student scores</p></div>
+    <div class="card mb20">
+      <div class="form-row">
+        <div class="form-group"><label>Class</label><select id="grade-class">${t.classes.map(c=>`<option>${c}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Subject</label><select id="grade-subj">${SUBJECTS.map(s=>`<option>${s}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Exam Type</label><select id="grade-exam"><option>Term 1</option><option>Term 2</option><option>Term 3</option><option>Final</option></select></div>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>📝 Mark Entry Sheet</h3><button class="btn btn-primary btn-sm" onclick="saveAllMarks()">💾 Save All Marks</button></div>
+      <table>
+        <thead><tr><th>LIN</th><th>Student Name</th><th>Score /100</th><th>Grade</th><th>Remarks</th></tr></thead>
+        <tbody>${myStudents.slice(0,12).map(s=>{const score=s.results['T1']?.['Mathematics']||'';return`<tr>
+          <td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td>
+          <td>${s.name}</td>
+          <td><input type="number" min="0" max="100" value="${score}" data-lin="${s.lin}" oninput="updateGradeRow(this)" style="width:80px;background:rgba(5,14,28,0.7);border:1px solid rgba(201,152,58,0.2);border-radius:6px;padding:7px 10px;color:var(--cream);font-family:'Outfit',sans-serif;font-size:13px;outline:none"></td>
+          <td id="gr-${s.lin.replace(/\W/g,'')}">${score?`<span class="badge b-gold">${grade(score)}</span>`:'—'}</td>
+          <td style="font-size:11px;color:var(--muted)">${score?(score>=70?'Good standing':score>=50?'Needs attention':'Requires support'):'—'}</td>
+        </tr>`;}).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+window.updateGradeRow = function(inp) {
+  const lin = inp.dataset.lin.replace(/\W/g,'');
+  const cell = document.getElementById('gr-'+lin);
+  if(cell) cell.innerHTML = inp.value?`<span class="badge b-gold">${grade(inp.value)}</span>`:'—';
+};
+window.saveAllMarks = function() { toast('✅ All marks saved successfully!','success','Grades Saved'); };
+
+function renderTeacherAttendance() {
+  const myStudents = DB.students.filter(s=>currentUser.classes.includes(s.class)).slice(0,10);
+  document.getElementById('tc-attendance').innerHTML = `
+    <div class="section-hdr"><h2>Take Attendance</h2><p>Record today's class attendance</p></div>
+    <div class="card mb20">
+      <div class="form-row">
+        <div class="form-group"><label>Class</label><select id="att-cls">${currentUser.classes.map(c=>`<option>${c}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Date</label><input type="date" id="att-date" value="${new Date().toISOString().split('T')[0]}"></div>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>📋 Attendance Sheet</h3><button class="btn btn-primary btn-sm" onclick="submitAttendance()">✅ Submit Attendance</button></div>
+      <table>
+        <thead><tr><th>LIN</th><th>Student Name</th><th>Status</th><th>Note</th></tr></thead>
+        <tbody>${myStudents.map(s=>`<tr>
+          <td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td>
+          <td>${s.name}</td>
+          <td><select style="background:rgba(5,14,28,0.7);border:1px solid rgba(201,152,58,0.2);border-radius:6px;padding:6px 10px;color:var(--cream);font-size:12px">
+            <option ${s.att[0]==='present'?'selected':''}>✅ Present</option>
+            <option ${s.att[0]==='absent'?'selected':''}>❌ Absent</option>
+            <option ${s.att[0]==='late'?'selected':''}>⏰ Late</option>
+          </select></td>
+          <td><input type="text" placeholder="Optional note" style="background:rgba(5,14,28,0.5);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 10px;color:var(--cream);font-size:12px;width:150px"></td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>`;
+}
+window.submitAttendance = () => toast('✅ Attendance submitted successfully!','success','Attendance Saved');
+
+function renderTeacherAssignments() {
+  document.getElementById('tc-assignments').innerHTML = `
+    <div class="section-hdr"><h2>Assignments</h2><p>Create and manage class assignments</p></div>
+    <div class="card mb20">
+      <h3>📌 Create New Assignment</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Title</label><input type="text" id="asg-title" placeholder="e.g. Chapter 7 Exercises"></div>
+        <div class="form-group"><label>Subject</label><select id="asg-subj">${SUBJECTS.map(s=>`<option>${s}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Class</label><select id="asg-cls">${currentUser.classes.map(c=>`<option>${c}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Due Date</label><input type="date" id="asg-due"></div>
+      </div>
+      <div class="form-group"><label>Instructions</label><textarea id="asg-inst" rows="3" placeholder="Detailed instructions for students..."></textarea></div>
+      <button class="btn btn-primary" onclick="createAssignment()">📤 Publish Assignment</button>
+    </div>`;
+}
+window.createAssignment = () => {
+  const title = document.getElementById('asg-title')?.value;
+  if(!title) { toast('Please enter an assignment title','error','Missing Field'); return; }
+  toast(`"${title}" published to students!`,'success','Assignment Published');
+  document.getElementById('asg-title').value = '';
+};
+
+function renderTeacherClass() {
+  const myStudents = DB.students.filter(s=>currentUser.classes.includes(s.class));
+  const sorted = [...myStudents].sort((a,b)=>calcSig(b).avg-calcSig(a).avg);
+  document.getElementById('tc-class').innerHTML = `
+    <div class="section-hdr"><h2>Class Performance</h2></div>
+    <div class="table-card">
+      <div class="table-hdr">
+        <h3>Student Rankings</h3>
+        <input type="text" placeholder="🔍 Search student..." oninput="filterTcStudents(this.value)" style="background:rgba(5,14,28,0.6);border:1px solid var(--border2);border-radius:8px;padding:8px 14px;color:var(--cream);font-size:12px;outline:none;width:200px">
+      </div>
+      <table>
+        <thead><tr><th>Rank</th><th>LIN</th><th>Name</th><th>Class</th><th>Average</th><th>Signal</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="tc-class-tbody">${sorted.map((s,i)=>{const sig=calcSig(s);return`<tr>
+          <td class="${i<3?['rank-gold','rank-silver','rank-bronze'][i]:''}">#${i+1}</td>
+          <td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td>
+          <td style="font-weight:500">${s.name}</td>
+          <td><span class="badge b-gold">${s.class}</span></td>
+          <td><strong>${sig.avg}</strong></td>
+          <td><div class="sig-bar"><div class="sig-track"><div class="sig-fill sf-${sigClass(sig.signal)}" style="width:${sig.signal}%"></div></div><span class="sig-val">${sig.signal}</span></div></td>
+          <td>${sigBadge(sig.signal)}</td>
+          <td><button class="btn btn-ghost btn-sm" onclick="notifyParent('${s.name}')">📱 Notify</button></td>
+        </tr>`;}).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+window.filterTcStudents = function(q) {
+  const myStudents = DB.students.filter(s=>currentUser.classes.includes(s.class));
+  const filtered = myStudents.filter(s=>s.name.toLowerCase().includes(q.toLowerCase())||s.lin.toLowerCase().includes(q.toLowerCase()));
+  const tbody = document.getElementById('tc-class-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = filtered.sort((a,b)=>calcSig(b).avg-calcSig(a).avg).map((s,i)=>{const sig=calcSig(s);return`<tr><td>#${i+1}</td><td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td><td>${s.name}</td><td><span class="badge b-gold">${s.class}</span></td><td><strong>${sig.avg}</strong></td><td>${sig.signal}</td><td>${sigBadge(sig.signal)}</td><td><button class="btn btn-ghost btn-sm" onclick="notifyParent('${s.name}')">📱 Notify</button></td></tr>`;}).join('');
+};
+window.notifyParent = name => toast(`📱 SMS notification sent to parents of ${name.split(' ')[0]}!`,'success','Parent Notified');
+
+function renderTeacherAlerts() {
+  const myStudents = DB.students.filter(s=>currentUser.classes.includes(s.class));
+  const atRisk = myStudents.filter(s=>{const sig=calcSig(s);return sig.avg<55||sig.attPct<70;});
+  document.getElementById('tc-alerts').innerHTML = `
+    <div class="section-hdr"><h2>Academic Alerts</h2><p>${atRisk.length} students flagged for intervention</p></div>
+    ${atRisk.length===0?`<div class="card"><p style="color:var(--muted);text-align:center;padding:20px">🎉 No alerts at this time. All students are performing well!</p></div>`:''}
+    <div style="display:flex;flex-direction:column;gap:10px">${atRisk.map(s=>{
+      const sig=calcSig(s);const critical=sig.avg<45||sig.attPct<60;
+      return`<div style="background:rgba(${critical?'139,26,48':'184,92,0'},0.1);border:1px solid rgba(${critical?'192,36,63':'217,119,6'},0.25);border-left:3px solid ${critical?'var(--crimson2)':'#fbbf24'};border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px">${s.name} <span style="font-size:11px;color:var(--muted);font-weight:400">· ${s.lin} · ${s.class}</span></div>
+          <div style="font-size:12px;color:${critical?'#f87171':'#fbbf24'}">${sig.avg<55?`⚠️ Avg: ${sig.avg} `:''}${sig.attPct<70?`📅 Attendance: ${sig.attPct}%`:''}</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">${sigBadge(sig.signal)}<button class="btn btn-${critical?'danger':'ghost'} btn-sm" onclick="notifyParent('${s.name}')">📱 Notify Parent</button></div>
+      </div>`;
+    }).join('')}</div>`;
+}
+
+function renderTeacherMessages(t) {
+  document.getElementById('tc-messages').innerHTML = `
+    <div class="section-hdr"><h2>Messages</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>💬 Message to Student</h3>
+        <div class="form-group"><label>Select Student</label><select>${DB.students.filter(s=>t.classes.includes(s.class)).map(s=>`<option value="${s.lin}">${s.name}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Type your message..."></textarea></div>
+        <button class="btn btn-primary" onclick="toast('Message sent to student!','success','Sent')">📤 Send Message</button>
+      </div>
+      <div class="card">
+        <h3>📢 Class Announcement</h3>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="Announcement title"></div>
+        <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Write announcement..."></textarea></div>
+        <button class="btn btn-primary" onclick="toast('Announcement sent to all students!','success','Broadcast Sent')">📢 Broadcast to Class</button>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════════════
+//  PARENT PORTAL
+// ══════════════════════════════════════════════════
+function launchParent() {
+  showPage('parentPortal');
+  const p = currentUser;
+  const children = p.children.map(lin=>DB.students.find(s=>s.lin===lin)).filter(Boolean);
+  const nameParts = p.name.split(' ');
+  const displayName = nameParts[nameParts.length-1]||nameParts[0];
+  document.getElementById('pa-user-card').innerHTML = `
+    <div class="s-avatar">${p.name[0]||'P'}</div>
+    <div><div class="s-name">${displayName}</div><div class="s-lin">${p.id}</div><div class="s-role">Guardian</div></div>`;
+  renderParentDash(children);
+  renderParentProgress(children);
+  renderParentAttendance(children);
+  renderParentFees(children);
+  renderParentMessages(p);
+  renderEvents('pa');
+  startTimer('pa-timer');
+  toast(`Welcome, ${p.name}!`,'success','👨‍👩‍👧 Parent Login');
+}
+
+function renderParentDash(children) {
+  const sigs = children.map(c=>({child:c,sig:calcSig(c)}));
+  document.getElementById('pa-dashboard').innerHTML = `
+    <div class="section-hdr"><h2>Parent Dashboard</h2><p>Academic overview for your children</p></div>
+    ${sigs.map(({child:c,sig})=>{
+      const rank=[...DB.students.filter(s=>s.class===c.class)].sort((a,b)=>calcSig(b).avg-calcSig(a).avg).findIndex(s=>s.lin===c.lin)+1;
+      return`<div class="profile-hero" style="margin-bottom:16px">
+        <div class="profile-hero-overlay">
+          <div class="ph-avatar">${c.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+          <div class="ph-info">
+            <h2>${c.name}</h2>
+            <p>${c.lin} · Class ${c.class} · Admitted ${c.admYear}</p>
+            <div class="ph-meta">
+              <div><div class="ph-m-val">${sig.avg}</div><div class="ph-m-lbl">Average</div></div>
+              <div><div class="ph-m-val">${sig.attPct}%</div><div class="ph-m-lbl">Attendance</div></div>
+              <div><div class="ph-m-val">#${rank}</div><div class="ph-m-lbl">Class Rank</div></div>
+              <div><div class="ph-m-val">${(c.fees.paid/c.fees.total*100).toFixed(0)}%</div><div class="ph-m-lbl">Fees Paid</div></div>
+            </div>
+          </div>
+          ${sigBadge(sig.signal)}
+        </div>
+      </div>`;
+    }).join('')}
+    <div class="ai-insight"><h4>🧠 Parent Intelligence Summary</h4>
+      <p>${sigs.map(({child:c,sig})=>`<strong>${c.name.split(' ')[0]}</strong> is performing at a ${sig.signal>=75?'<strong style="color:#34d399">Distinction</strong>':sig.signal>=55?'<strong style="color:#fbbf24">Satisfactory</strong>':'<strong style="color:#f87171">Concerning</strong>'} level with an average of ${sig.avg}. `).join('')}Please ensure regular revision at home and attendance at all school sessions.</p>
+    </div>`;
+}
+
+function renderParentProgress(children) {
+  document.getElementById('pa-progress').innerHTML = `
+    <div class="section-hdr"><h2>Academic Progress</h2></div>
+    ${children.map(c=>`<div style="margin-bottom:24px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:14px">${c.name} · Class ${c.class}</div>
+      <div class="subjects-grid">${SUBJECTS.map(sub=>{const score=subjAvg(c,sub);const color=gradeColor(score);return`<div class="subj-card"><div class="subj-name">${sub}</div><div class="subj-score" style="color:${color}">${score}</div><div class="subj-grade">${grade(score)}</div><div class="subj-bar"><div class="subj-bar-fill" style="width:${score}%"></div></div></div>`;}).join('')}</div>
+    </div>`).join('')}`;
+}
+
+function renderParentAttendance(children) {
+  document.getElementById('pa-attendance').innerHTML = `
+    <div class="section-hdr"><h2>Attendance Records</h2></div>
+    ${children.map(c=>{const present=c.att.filter(d=>d==='present').length;const absent=c.att.filter(d=>d==='absent').length;const late=c.att.filter(d=>d==='late').length;return`<div class="card mb20">
+      <h3>${c.name} · Class ${c.class}</h3>
+      <div class="stats-row mb0">
+        <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">✅</div><div class="stat-val">${present}</div><div class="stat-lbl">Present</div></div>
+        <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">❌</div><div class="stat-val">${absent}</div><div class="stat-lbl">Absent</div></div>
+        <div class="stat-box" style="--accent-c:#fbbf24"><div class="stat-icon">⏰</div><div class="stat-val">${late}</div><div class="stat-lbl">Late</div></div>
+        <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">📊</div><div class="stat-val">${(present/30*100).toFixed(0)}%</div><div class="stat-lbl">Rate</div></div>
+      </div>
+    </div>`;}).join('')}`;
+}
+
+function renderParentFees(children) {
+  const f = n => n.toLocaleString();
+  document.getElementById('pa-fees').innerHTML = `
+    <div class="section-hdr"><h2>Fees & Payments</h2></div>
+    ${children.map(c=>{const pct=Math.min(100,Math.round(c.fees.paid/c.fees.total*100));const bal=c.fees.total-c.fees.paid;return`<div class="card mb20">
+      <h3>${c.name} · ${c.class}</h3>
+      <div style="display:flex;gap:32px;flex-wrap:wrap;margin-bottom:16px">
+        <div><div class="stat-lbl">Total Fees</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700">UGX ${f(c.fees.total)}</div></div>
+        <div><div class="stat-lbl">Paid</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#34d399">UGX ${f(c.fees.paid)}</div></div>
+        <div><div class="stat-lbl">Balance</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:${bal>0?'#f87171':'#34d399'}">UGX ${f(bal)}</div></div>
+      </div>
+      <div class="fee-bar"><div class="fee-fill" style="width:${pct}%"></div></div>
+      <div style="margin-top:8px;font-size:11px;color:var(--muted)">${pct}% paid · ${bal>0?`UGX ${f(bal)} outstanding · Due: 30 Nov 2024`:'Fully paid ✅'}</div>
+      ${bal>0?`<button class="btn btn-primary" style="margin-top:14px" onclick="toast('Payment gateway opened. Use: MTN 0780-DBLOCH or Airtel 0700-DBLOCH','info','Fee Payment')">💳 Pay Now</button>`:''}
+    </div>`;}).join('')}`;
+}
+
+function renderParentMessages(p) {
+  document.getElementById('pa-messages').innerHTML = `
+    <div class="section-hdr"><h2>Messages</h2></div>
+    <div class="card">
+      <h3>💬 Message to School</h3>
+      <div class="msg-thread" style="margin-bottom:16px">
+        <div class="msg-bubble msg-in"><div>Dear parent, your child has shown improvement in Mathematics this term. Please encourage them to continue.</div><div class="msg-meta">Mr. Odhiambo · Class Teacher · 3 days ago</div></div>
+        <div class="msg-bubble msg-in"><div>Reminder: Parent-Teacher meeting scheduled for Friday 15th November, 2PM in the school hall.</div><div class="msg-meta">Administration · 1 week ago</div></div>
+      </div>
+      <div class="form-group"><label>Message to School</label><textarea rows="3" placeholder="Type your message..."></textarea></div>
+      <button class="btn btn-primary" onclick="toast('Message sent to school administration!','success','Message Sent')">📤 Send</button>
+    </div>`;
+}
+
+// ══════════════════════════════════════════════════
+//  ADMIN PORTAL
+// ══════════════════════════════════════════════════
+function launchAdmin() {
+  showPage('adminPortal');
+  document.getElementById('ad-user-card').innerHTML = `
+    <div class="s-avatar" style="background:linear-gradient(135deg,var(--crimson2),var(--sky2))">A</div>
+    <div><div class="s-name">${currentUser.name||'Administrator'}</div><div class="s-lin">ADMIN</div><div class="s-role">System Administrator</div></div>`;
+  renderAdminDash();
+  renderAdminStudents();
+  renderAdminTeachers();
+  renderAdminResults();
+  renderAdminAnalytics();
+  renderAdminFinance();
+  renderAdminMonitoring();
+  renderAdminReports();
+  renderAdminSettings();
+  startTimer('ad-timer');
+  startLiveToasts();
+  toast('System loaded. All services online.','success','🏛️ Admin Access');
+}
+
+function renderAdminDash() {
+  const allSigs = DB.students.map(s=>calcSig(s));
+  const schoolAvg = (allSigs.reduce((a,b)=>a+b.avg,0)/allSigs.length).toFixed(1);
+  const atRisk = allSigs.filter(s=>s.signal<50).length;
+  const avgAtt = (allSigs.reduce((a,b)=>a+b.attPct,0)/allSigs.length).toFixed(0);
+  const riskStudents = DB.students.filter(s=>calcSig(s).signal<50);
+  const tickerContent = riskStudents.map(s=>`⚠ ${s.name} (${s.class}) · Signal: ${calcSig(s).signal}`).join(' &nbsp; · &nbsp; ');
+  document.getElementById('ad-dashboard').innerHTML = `
+    ${riskStudents.length>0?`<div class="alert-ticker"><span class="ticker-lbl">🚨 LIVE ALERTS</span><div class="ticker-scroll"><div class="ticker-inner">${tickerContent}&nbsp;&nbsp;&nbsp;&nbsp;${tickerContent}</div></div></div>`:''}
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">🎓</div><div class="stat-val">${DB.students.length}</div><div class="stat-lbl">Total Students</div><span class="stat-trend trend-up">+2 this term</span></div>
+      <div class="stat-box" style="--accent-c:#60a5fa"><div class="stat-icon">👨‍🏫</div><div class="stat-val">${DB.teachers.length}</div><div class="stat-lbl">Teaching Staff</div></div>
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">📊</div><div class="stat-val">${schoolAvg}</div><div class="stat-lbl">School Average</div><span class="stat-trend trend-up">↑ +1.4</span></div>
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">📅</div><div class="stat-val">${avgAtt}%</div><div class="stat-lbl">Avg Attendance</div></div>
+      <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">🚨</div><div class="stat-val">${atRisk}</div><div class="stat-lbl">At Risk</div><span class="stat-trend trend-dn">Needs action</span></div>
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">🏫</div><div class="stat-val">${CLASSES.length}</div><div class="stat-lbl">Active Classes</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>📈 School Performance Trend</h3><canvas id="ad-trend-chart" height="220"></canvas></div>
+      <div class="card"><h3>🏫 Class Averages</h3><canvas id="ad-class-chart" height="220"></canvas></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>🔮 Risk Distribution</h3><canvas id="ad-risk-chart" height="200"></canvas></div>
+      <div class="card"><h3>📅 Weekly Attendance</h3><canvas id="ad-att-chart" height="200"></canvas></div>
+    </div>`;
+  setTimeout(()=>{
+    if(charts.adTrend) charts.adTrend.destroy();
+    charts.adTrend = new Chart(document.getElementById('ad-trend-chart'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'],datasets:[{label:'School Avg',data:[68,70,67,72,69,71,73,70,74,72,75],borderColor:'#c9983a',backgroundColor:'rgba(201,152,58,0.08)',tension:0.4,fill:true,pointRadius:3},{label:'National Avg',data:[65,65,66,65,66,66,67,66,67,67,68],borderColor:'rgba(122,154,184,0.4)',borderDash:[5,5],tension:0.4,pointRadius:0}]},options:co()});
+    if(charts.adClass) charts.adClass.destroy();
+    const classAvgs=CLASSES.map(cls=>{const sts=DB.students.filter(s=>s.class===cls);return sts.length?+(sts.map(s=>calcSig(s).avg).reduce((a,b)=>a+b,0)/sts.length).toFixed(1):0;});
+    charts.adClass = new Chart(document.getElementById('ad-class-chart'),{type:'bar',data:{labels:CLASSES,datasets:[{label:'Avg',data:classAvgs,backgroundColor:CLASSES.map((_,i)=>`hsla(${30+i*25},70%,55%,0.7)`),borderRadius:6}]},options:co()});
+    if(charts.adRisk) charts.adRisk.destroy();
+    const sigs=allSigs.map(s=>s.signal);
+    charts.adRisk = new Chart(document.getElementById('ad-risk-chart'),{type:'doughnut',data:{labels:['Strong (80+)','Stable (60-79)','Monitor (40-59)','Intervention (<40)'],datasets:[{data:[sigs.filter(s=>s>=80).length,sigs.filter(s=>s>=60&&s<80).length,sigs.filter(s=>s>=40&&s<60).length,sigs.filter(s=>s<40).length],backgroundColor:['rgba(10,94,50,0.8)','rgba(18,97,160,0.8)','rgba(184,92,0,0.8)','rgba(139,26,48,0.8)'],borderWidth:0}]},options:{plugins:{legend:{labels:{color:'#c8c6bc',font:{size:11}}}},cutout:'55%'}});
+    if(charts.adAtt) charts.adAtt.destroy();
+    charts.adAtt = new Chart(document.getElementById('ad-att-chart'),{type:'bar',data:{labels:['Mon','Tue','Wed','Thu','Fri'],datasets:[{label:'Present',data:[36,34,38,35,40],backgroundColor:'rgba(10,94,50,0.7)',borderRadius:4},{label:'Absent',data:[4,6,2,5,0],backgroundColor:'rgba(139,26,48,0.6)',borderRadius:4}]},options:co()});
+  }, 120);
+}
+
+function renderAdminStudents() {
+  document.getElementById('ad-students').innerHTML = `
+    <div class="section-hdr"><h2>Student Management</h2></div>
+    <div class="card mb20">
+      <h3>➕ Enrol New Student</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Full Name</label><input type="text" id="ns-name" placeholder="Full name"></div>
+        <div class="form-group"><label>Class</label><select id="ns-class">${CLASSES.map(c=>`<option>${c}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Date of Birth</label><input type="date" id="ns-dob"></div>
+        <div class="form-group"><label>Parent Contact</label><input type="text" id="ns-phone" placeholder="+256 780 000000"></div>
+      </div>
+      <button class="btn btn-primary" onclick="enrollStudent()">➕ Enrol Student</button>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr">
+        <h3>All Students (${DB.students.length})</h3>
+        <input type="text" placeholder="🔍 Search students..." oninput="adminSearchStudents(this.value)" style="background:rgba(5,14,28,0.6);border:1px solid var(--border2);border-radius:8px;padding:8px 14px;color:var(--cream);font-size:12px;outline:none;width:220px">
+      </div>
+      <table>
+        <thead><tr><th>LIN</th><th>Name</th><th>Class</th><th>Year</th><th>Avg</th><th>Signal</th><th>Fees</th><th>Action</th></tr></thead>
+        <tbody id="admin-student-tbody">${DB.students.map(s=>{const sig=calcSig(s);const feePct=Math.round(s.fees.paid/s.fees.total*100);return`<tr><td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td><td style="font-weight:500">${s.name}</td><td><span class="badge b-gold">${s.class}</span></td><td class="mono" style="font-size:11px">${s.admYear}</td><td><strong style="color:${gradeColor(sig.avg)}">${sig.avg}</strong></td><td>${sigBadge(sig.signal)}</td><td><span style="font-size:11px;color:${feePct===100?'#34d399':feePct>=50?'#fbbf24':'#f87171'}">${feePct}%</span></td><td><button class="btn btn-ghost btn-sm" onclick="viewStudentAdmin('${s.lin}')">👁 View</button></td></tr>`;}).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+window.enrollStudent = () => {
+  const name = document.getElementById('ns-name')?.value;
+  if(!name) { toast('Enter student name','error','Required'); return; }
+  const cls = document.getElementById('ns-class').value;
+  const lin = `LIN-2025-${String(DB.students.length+1).padStart(4,'0')}`;
+  toast(`${name} enrolled with LIN: ${lin}`,'success','Student Enrolled');
+  document.getElementById('ns-name').value = '';
+};
+window.adminSearchStudents = q => {
+  const tbody = document.getElementById('admin-student-tbody');
+  if(!tbody) return;
+  const filtered = DB.students.filter(s=>s.name.toLowerCase().includes(q.toLowerCase())||s.lin.toLowerCase().includes(q.toLowerCase())||s.class.toLowerCase().includes(q.toLowerCase()));
+  tbody.innerHTML = filtered.map(s=>{const sig=calcSig(s);const feePct=Math.round(s.fees.paid/s.fees.total*100);return`<tr><td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td><td>${s.name}</td><td><span class="badge b-gold">${s.class}</span></td><td>${s.admYear}</td><td><strong>${sig.avg}</strong></td><td>${sigBadge(sig.signal)}</td><td><span style="font-size:11px;color:${feePct===100?'#34d399':feePct>=50?'#fbbf24':'#f87171'}">${feePct}%</span></td><td><button class="btn btn-ghost btn-sm" onclick="viewStudentAdmin('${s.lin}')">👁 View</button></td></tr>`;}).join('');
+};
+window.viewStudentAdmin = lin => {
+  const s = DB.students.find(st=>st.lin===lin);
+  if(!s) return;
+  const sig = calcSig(s);
+  toast(`${s.name} · Avg: ${sig.avg} · Class: ${s.class} · Signal: ${sig.signal}`,'info','Student Profile');
+};
+
+function renderAdminTeachers() {
+  document.getElementById('ad-teachers').innerHTML = `
+    <div class="section-hdr"><h2>Teachers & Staff</h2></div>
+    <div class="card mb20">
+      <h3>➕ Add Staff Member</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Full Name</label><input type="text" id="nt-name" placeholder="Full name"></div>
+        <div class="form-group"><label>Subject</label><select id="nt-subj">${SUBJECTS.map(s=>`<option>${s}</option>`).join('')}</select></div>
+        <div class="form-group"><label>Email</label><input type="text" id="nt-email" placeholder="email@dorahbloch.ac.ug"></div>
+      </div>
+      <button class="btn btn-primary" onclick="addTeacher()">➕ Add Teacher</button>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>Staff Registry (${DB.teachers.length})</h3></div>
+      <table>
+        <thead><tr><th>ID</th><th>Name</th><th>Subject</th><th>Classes</th><th>Phone</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>${DB.teachers.map(t=>`<tr><td class="mono" style="font-size:11px;color:var(--muted)">${t.id}</td><td style="font-weight:500">${t.name}</td><td>${t.subject}</td><td>${t.classes.join(', ')}</td><td class="mono" style="font-size:11px">${t.phone}</td><td><span class="badge b-strong">Active</span></td><td><button class="btn btn-ghost btn-sm" onclick="toast('${t.name} profile loaded','info','Staff Profile')">👁 View</button></td></tr>`).join('')}</tbody>
+      </table>
+    </div>`;
+}
+window.addTeacher = () => {
+  const name = document.getElementById('nt-name')?.value;
+  if(!name) { toast('Enter teacher name','error','Required'); return; }
+  toast(`${name} added to staff registry!`,'success','Teacher Added');
+  document.getElementById('nt-name').value = '';
+};
+
+function renderAdminResults() {
+  document.getElementById('ad-results').innerHTML = `
+    <div class="section-hdr"><h2>Results Management</h2></div>
+    <div class="card mb20">
+      <h3>📢 Publish Results</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Exam</label><select id="pub-exam"><option>Term 1</option><option>Term 2</option><option>Term 3</option><option>Final</option></select></div>
+        <div class="form-group"><label>Class</label><select id="pub-class"><option>All Classes</option>${CLASSES.map(c=>`<option>${c}</option>`).join('')}</select></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="publishResults()">📢 Publish Results</button>
+        <button class="btn btn-success" onclick="generateReports()">📄 Generate All Reports</button>
+        <button class="btn btn-ghost" onclick="exportData()">📥 Export to Excel</button>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>Published Examinations</h3></div>
+      <table>
+        <thead><tr><th>Exam</th><th>Class</th><th>Published</th><th>Students</th><th>School Avg</th><th>Pass Rate</th><th>Status</th></tr></thead>
+        <tbody>${DB.published.map(p=>`<tr><td style="font-weight:500">${p.exam}</td><td>${p.class}</td><td class="mono" style="font-size:11px">${p.date}</td><td>${p.students}</td><td><strong style="color:var(--gold2)">${p.avg}</strong></td><td>${Math.round(60+Math.random()*35)}%</td><td><span class="badge b-strong">${p.status}</span></td></tr>`).join('')}</tbody>
+      </table>
+    </div>`;
+}
+window.publishResults = () => { const exam=document.getElementById('pub-exam').value; const cls=document.getElementById('pub-class').value; toast(`${exam} results published for ${cls}!`,'success','Results Published'); };
+window.generateReports = () => { toast('Generating report cards...','info','Processing'); setTimeout(()=>toast('✅ All 40 report cards generated!','success','Reports Ready'),2000); };
+window.exportData = () => toast('Data exported to Excel file','success','Export Complete');
+
+function renderAdminAnalytics() {
+  const allSigs = DB.students.map(s=>calcSig(s));
+  document.getElementById('ad-analytics').innerHTML = `
+    <div class="section-hdr"><h2>School Analytics</h2></div>
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">🏆</div><div class="stat-val">${allSigs.filter(s=>s.signal>=80).length}</div><div class="stat-lbl">Top Performers</div></div>
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">📊</div><div class="stat-val">${(allSigs.reduce((a,b)=>a+b.avg,0)/allSigs.length).toFixed(1)}</div><div class="stat-lbl">School Average</div></div>
+      <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">🚨</div><div class="stat-val">${allSigs.filter(s=>s.signal<50).length}</div><div class="stat-lbl">Need Intervention</div></div>
+      <div class="stat-box" style="--accent-c:#60a5fa"><div class="stat-icon">🔮</div><div class="stat-val">+3.2%</div><div class="stat-lbl">Predicted Growth</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>🎯 Subject Performance</h3><canvas id="ad-subj-chart" height="240"></canvas></div>
+      <div class="card"><h3>📉 Trend & Prediction</h3><canvas id="ad-pred-chart" height="240"></canvas></div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>🏆 Top 10 Performers — School-Wide</h3></div>
+      <table>
+        <thead><tr><th>Rank</th><th>Name</th><th>Class</th><th>Average</th><th>Signal</th><th>Trend</th></tr></thead>
+        <tbody>${[...DB.students].sort((a,b)=>calcSig(b).avg-calcSig(a).avg).slice(0,10).map((s,i)=>{const sig=calcSig(s);return`<tr><td class="${i<3?['rank-gold','rank-silver','rank-bronze'][i]:''}">#${i+1}</td><td style="font-weight:500">${s.name}</td><td><span class="badge b-gold">${s.class}</span></td><td><strong style="color:var(--gold2)">${sig.avg}</strong></td><td>${sigBadge(sig.signal)}</td><td style="color:#34d399;font-size:12px">↑ Improving</td></tr>`;}).join('')}</tbody>
+      </table>
+    </div>`;
+  setTimeout(()=>{
+    if(charts.adSubj) charts.adSubj.destroy();
+    charts.adSubj = new Chart(document.getElementById('ad-subj-chart'),{type:'bar',data:{labels:SUBJECTS.map(s=>s.slice(0,5)),datasets:CLASSES.slice(0,4).map((cls,i)=>({label:cls,data:SUBJECTS.map(sub=>{const sts=DB.students.filter(s=>s.class===cls);return sts.length?+(sts.map(s=>subjAvg(s,sub)).reduce((a,b)=>a+b,0)/sts.length).toFixed(1):0;}),backgroundColor:`hsla(${i*60+20},65%,55%,0.7)`,borderRadius:4}))},options:co()});
+    if(charts.adPred) charts.adPred.destroy();
+    charts.adPred = new Chart(document.getElementById('ad-pred-chart'),{type:'line',data:{labels:['T1','T2','T3','Pred T1 2025'],datasets:[{label:'Actual',data:[68,70,73,null],borderColor:'#c9983a',pointRadius:5,tension:0.3},{label:'Predicted',data:[null,null,73,77],borderColor:'#34d399',borderDash:[6,4],pointRadius:5,tension:0.3}]},options:co()});
+  }, 100);
+}
+
+function renderAdminFinance() {
+  const totalFees = DB.students.reduce((a,s)=>a+s.fees.total,0);
+  const collectedFees = DB.students.reduce((a,s)=>a+s.fees.paid,0);
+  const outstanding = totalFees - collectedFees;
+  const f = n => n.toLocaleString();
+  const defaulters = DB.students.filter(s=>s.fees.paid < s.fees.total).length;
+  document.getElementById('ad-finance').innerHTML = `
+    <div class="section-hdr"><h2>Financial Overview</h2><p>Term 3 2024 · All figures in UGX</p></div>
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">💰</div><div class="stat-val">${f(totalFees)}</div><div class="stat-lbl">Total Expected (UGX)</div></div>
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">✅</div><div class="stat-val">${f(collectedFees)}</div><div class="stat-lbl">Collected (UGX)</div><span class="stat-trend trend-up">${Math.round(collectedFees/totalFees*100)}%</span></div>
+      <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">📋</div><div class="stat-val">${f(outstanding)}</div><div class="stat-lbl">Outstanding (UGX)</div></div>
+      <div class="stat-box" style="--accent-c:#fbbf24"><div class="stat-icon">⚠️</div><div class="stat-val">${defaulters}</div><div class="stat-lbl">Fee Defaulters</div></div>
+    </div>
+    <div class="card mb20">
+      <h3>💳 Collection Progress</h3>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px"><span>UGX ${f(collectedFees)} collected</span><span style="color:var(--gold)">${Math.round(collectedFees/totalFees*100)}%</span></div>
+      <div class="fee-bar" style="height:12px"><div class="fee-fill" style="width:${Math.round(collectedFees/totalFees*100)}%"></div></div>
+    </div>
+    <div class="table-card">
+      <div class="table-hdr"><h3>Fee Defaulters</h3><button class="btn btn-primary btn-sm" onclick="sendFeeReminders()">📱 Send SMS Reminders</button></div>
+      <table>
+        <thead><tr><th>LIN</th><th>Name</th><th>Class</th><th>Balance (UGX)</th><th>% Paid</th><th>Action</th></tr></thead>
+        <tbody>${DB.students.filter(s=>s.fees.paid<s.fees.total).slice(0,10).map(s=>{const bal=s.fees.total-s.fees.paid;const pct=Math.round(s.fees.paid/s.fees.total*100);return`<tr><td class="mono" style="font-size:11px;color:var(--muted)">${s.lin}</td><td>${s.name}</td><td><span class="badge b-gold">${s.class}</span></td><td style="color:#f87171;font-weight:600">${f(bal)}</td><td><span style="color:${pct>=50?'#fbbf24':'#f87171'}">${pct}%</span></td><td><button class="btn btn-ghost btn-sm" onclick="toast('Reminder sent to parents of ${s.name.split(' ')[0]}','success','SMS Sent')">📱 Remind</button></td></tr>`;}).join('')}</tbody>
+      </table>
+    </div>`;
+}
+window.sendFeeReminders = () => toast('SMS reminders sent to all fee defaulters!','success','Reminders Sent');
+
+function renderAdminMonitoring() {
+  const allSigs = DB.students.map(s=>calcSig(s));
+  const atRisk = allSigs.filter(s=>s.signal<50).length;
+  const critical = allSigs.filter(s=>s.signal<40).length;
+  document.getElementById('ad-monitoring').innerHTML = `
+    <div class="section-hdr"><h2>Live Monitoring Engine</h2><p>Auto-refresh every 60s</p></div>
+    <div class="stats-row">
+      <div class="stat-box" style="--accent-c:#34d399"><div class="stat-icon">⚡</div><div class="stat-val" style="color:#34d399;font-size:20px">LIVE</div><div class="stat-lbl">Engine Status</div></div>
+      <div class="stat-box" style="--accent-c:var(--gold)"><div class="stat-icon">🔄</div><div class="stat-val">60s</div><div class="stat-lbl">Refresh Cycle</div></div>
+      <div class="stat-box" style="--accent-c:#fbbf24"><div class="stat-icon">⚠️</div><div class="stat-val">${atRisk}</div><div class="stat-lbl">At Risk</div></div>
+      <div class="stat-box" style="--accent-c:#f87171"><div class="stat-icon">🚨</div><div class="stat-val">${critical}</div><div class="stat-lbl">Critical</div></div>
+    </div>
+    <div class="card mb20"><h3>⚡ Signal History</h3><canvas id="ad-signal-chart" height="180"></canvas></div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      ${DB.students.filter(s=>{const sig=calcSig(s);return sig.avg<55||sig.attPct<70;}).slice(0,12).map(s=>{
+        const sig=calcSig(s);
+        return`<div style="background:rgba(${sig.signal<40?'139,26,48':'184,92,0'},0.1);border:1px solid rgba(${sig.signal<40?'192,36,63':'217,119,6'},0.25);border-left:3px solid ${sig.signal<40?'var(--crimson2)':'#fbbf24'};border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div><div style="font-size:13px;font-weight:600;color:var(--white)">${s.name} · ${s.class}</div>
+          <div style="font-size:11px;color:var(--muted)">Signal: ${sig.signal} · Avg: ${sig.avg} · Att: ${sig.attPct}%</div></div>
+          ${sigBadge(sig.signal)}
+        </div>`;
+      }).join('')}
+    </div>`;
+  setTimeout(()=>{
+    if(charts.adSignal) charts.adSignal.destroy();
+    const cycles = Array.from({length:10},()=>+(65+Math.random()*15).toFixed(1));
+    charts.adSignal = new Chart(document.getElementById('ad-signal-chart'),{type:'line',data:{labels:Array.from({length:10},(_,i)=>`Cycle ${i+1}`),datasets:[{label:'School Signal',data:cycles,borderColor:'#c9983a',backgroundColor:'rgba(201,152,58,0.08)',tension:0.4,fill:true,pointRadius:4},{label:'Threshold',data:Array(10).fill(60),borderColor:'rgba(139,26,48,0.5)',borderDash:[5,5],pointRadius:0}]},options:co()});
+  }, 100);
+}
+
+function renderAdminReports() {
+  document.getElementById('ad-reports').innerHTML = `
+    <div class="section-hdr"><h2>Report Generation</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>🖨️ Generate Report Card</h3>
+        <div class="form-group"><label>Student LIN or Name</label><input type="text" id="rpt-target" placeholder="e.g. LIN-2024-0001 or Nakato"></div>
+        <div class="form-group"><label>Report Type</label><select><option>Full Academic Report</option><option>Subject Summary</option><option>Attendance Report</option><option>Risk Analysis Report</option></select></div>
+        <button class="btn btn-primary" style="margin-top:8px" onclick="previewReport()">👁 Preview & Print</button>
+      </div>
+      <div class="card">
+        <h3>📊 Bulk Reports</h3>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          ${[{icon:'🎓',label:'All Student Report Cards',action:'generateReports'},{icon:'👨‍🏫',label:'Teacher Performance Summary'},{icon:'📅',label:'Full Attendance Report'},{icon:'💰',label:'Financial Collection Report'},{icon:'🧠',label:'AI Risk Assessment Export'}].map(r=>`<button class="btn btn-ghost" onclick="${r.action?r.action+'()':'toast(\"Generating report...\",\"info\",\"Processing\")'}" style="justify-content:flex-start;gap:12px">${r.icon} ${r.label}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div id="ad-report-preview"></div>`;
+}
+
+window.previewReport = () => {
+  const target = document.getElementById('rpt-target')?.value||'';
+  const s = DB.students.find(st=>st.lin.toLowerCase().includes(target.toLowerCase())||st.name.toLowerCase().includes(target.toLowerCase())||st.class.toLowerCase()===target.toLowerCase());
+  if(!s) { toast('Student not found. Try a name or LIN.','error','Not Found'); return; }
+  const sig = calcSig(s);
+  document.getElementById('ad-report-preview').innerHTML = `
+    <div class="table-card" style="margin-top:20px">
+      <div class="table-hdr"><h3>📄 Report Preview — ${s.name}</h3><div style="display:flex;gap:8px"><button class="btn btn-primary btn-sm" onclick="printReport()">🖨️ Print</button><button class="btn btn-ghost btn-sm" onclick="exportPDF()">📥 PDF</button></div></div>
+      <div style="padding:22px">
+        <div style="margin-bottom:16px"><strong style="font-family:'Cormorant Garamond',serif;font-size:18px">${s.name}</strong> &nbsp;·&nbsp; <span style="color:var(--muted);font-size:12px">${s.lin} · Class ${s.class} · Admitted ${s.admYear}</span></div>
+        <table><thead><tr><th>Subject</th>${EXAMS.map(e=>`<th>${e}</th>`).join('')}<th>Avg</th><th>Grade</th></tr></thead>
+        <tbody>${SUBJECTS.map(sub=>{const avg=subjAvg(s,sub);return`<tr><td>${sub}</td>${EXAMS.map(e=>`<td>${s.results[e]?.[sub]||'—'}</td>`).join('')}<td><strong>${avg}</strong></td><td><span class="badge b-gold">${grade(avg)}</span></td></tr>`;}).join('')}</tbody></table>
+        <div style="margin-top:16px;display:flex;gap:24px;flex-wrap:wrap">
+          <div><div style="font-size:11px;color:var(--muted)">Overall Avg</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gold2)">${sig.avg}</div></div>
+          <div><div style="font-size:11px;color:var(--muted)">Signal</div><div style="margin-top:5px">${sigBadge(sig.signal)}</div></div>
+          <div><div style="font-size:11px;color:var(--muted)">Attendance</div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700">${sig.attPct}%</div></div>
+        </div>
+      </div>
+    </div>`;
+};
+
+function renderAdminSettings() {
+  document.getElementById('ad-settings').innerHTML = `
+    <div class="section-hdr"><h2>System Settings</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>🏫 School Profile</h3>
+        <div class="form-group"><label>School Name</label><input type="text" value="Dorah Bloch School"></div>
+        <div class="form-group"><label>Academic Year</label><input type="text" value="2024–2025"></div>
+        <div class="form-group"><label>Current Term</label><select><option selected>Term 3</option><option>Term 1</option><option>Term 2</option></select></div>
+        <div class="form-group"><label>Grading System</label><select><option selected>Uganda (D1–F9)</option><option>Kenya A-E</option><option>Percentage</option></select></div>
+        <button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button>
+      </div>
+      <div class="card">
+        <h3>⚡ System Services</h3>
+        ${['Academic Intelligence Engine','PostgreSQL Database','Redis Cache','Authentication Service','Email/SMS Gateway','Monitoring Engine','File Storage','Backup Service','Parent Portal','Student Portal'].map((svc,i)=>`
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
+            <span style="font-size:12px">${svc}</span>
+            <div style="display:flex;align-items:center;gap:7px">
+              <div style="width:6px;height:6px;border-radius:50%;background:${i<7?'#34d399':'#fbbf24'}"></div>
+              <span style="font-size:10px;color:${i<7?'#34d399':'#fbbf24'}">${i<7?'Online':'Standby'}</span>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+window.saveSettings = () => toast('Settings saved successfully!','success','Saved');
+
+// ══════════════════════════════════════════════════
+//  GLOBAL UTILITIES
+// ══════════════════════════════════════════════════
+window.sendMsg = function(inputId) {
+  const inp = document.getElementById(inputId);
+  if(!inp||!inp.value.trim()) return;
+  const thread = inp.closest('.card').querySelector('.msg-thread');
+  if(thread) {
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble msg-out';
+    bubble.innerHTML = `<div>${inp.value}</div><div class="msg-meta">You · just now</div>`;
+    thread.appendChild(bubble);
+    thread.scrollTop = thread.scrollHeight;
+  }
+  toast('Message sent!','success','Sent');
+  inp.value = '';
+};
+
+window.printReport = () => {
+  toast('Sending to printer...','info','Printing');
+  setTimeout(()=>toast('Report printed successfully!','success','Printed'), 1500);
+};
+
+window.exportPDF = () => {
+  toast('Generating PDF...','info','Processing');
+  setTimeout(()=>toast('PDF report exported successfully!','success','PDF Ready'), 2000);
+};
+
+window.adminGlobalSearch = function(q) {
+  if(!q||q.length < 2) return;
+  const found = DB.students.filter(s=>s.name.toLowerCase().includes(q.toLowerCase())||s.lin.toLowerCase().includes(q.toLowerCase()));
+  if(found.length>0) {
+    toast(`Found ${found.length} result(s) for "${q}" — first: ${found[0].name}`,'info','Search Results');
+  }
+};
+
+window.runAnalysis = function() {
+  toast('Running full academic intelligence analysis...','info','Analysis Running');
+  setTimeout(()=>toast('Analysis complete! Reports updated across all dashboards.','success','Analysis Complete'), 3000);
+};
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') {
+    document.getElementById('loginOverlay').classList.remove('open');
+    document.getElementById('tfaOverlay').classList.remove('open');
+    document.getElementById('notifPanel').classList.remove('open');
+  }
+  if(e.key==='Enter' && document.getElementById('loginOverlay').classList.contains('open')) {
+    doLogin();
+  }
+});
+</script>
+</body>
+</html>
